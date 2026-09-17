@@ -924,7 +924,10 @@ function add(){
   document.getElementById('cant').value='';
   document.getElementById('val').value='';
 
-  document.getElementById('cat').value='Granos y abarrotes';
+  document.getElementById('cat').value=
+    categoriaActiva!=='Todas'
+      ?categoriaActiva
+      :'Granos y abarrotes';
 
   document.getElementById('hint').classList.remove('show');
 
@@ -1803,6 +1806,11 @@ function renderCategoryTabs(){
 function seleccionarCategoria(cat){
 
   categoriaActiva=cat;
+
+  if(cat!=='Todas'){
+
+    document.getElementById('cat').value=cat;
+  }
 
   render();
 }
