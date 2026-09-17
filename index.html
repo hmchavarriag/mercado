@@ -365,6 +365,11 @@ input,select,textarea{
 <option value="g">g</option>
 <option value="unidad">unidad</option>
 <option value="paca">Paca</option>
+<option value="ml">ml</option>
+<option value="l">Litro</option>
+<option value="caja">Caja</option>
+<option value="docena">Docena</option>
+<option value="bulto">Bulto</option>
 </select>
 
 </div>
@@ -526,6 +531,9 @@ Cancelar
 <select id="editCategoria"
     style="display:none"></select>
 
+<select id="editUnidad"
+    style="display:none"></select>
+
 <button class="btn btn-g" onclick="guardarEditor()">
 Guardar
 </button>
@@ -592,6 +600,19 @@ const CATEGORIAS=[
   {id:'Lácteos',nombre:'Lácteos',icono:'🥛'},
   {id:'Bebidas',nombre:'Bebidas',icono:'🥤'},
   {id:'Otros',nombre:'Otros',icono:'📦'}
+];
+
+const UNIDADES=[
+  {id:'kg',nombre:'kg'},
+  {id:'lb',nombre:'lb'},
+  {id:'g',nombre:'g'},
+  {id:'unidad',nombre:'unidad'},
+  {id:'paca',nombre:'Paca'},
+  {id:'ml',nombre:'ml'},
+  {id:'l',nombre:'Litro'},
+  {id:'caja',nombre:'Caja'},
+  {id:'docena',nombre:'Docena'},
+  {id:'bulto',nombre:'Bulto'}
 ];
 
 /* =========================================================
@@ -1060,6 +1081,31 @@ function editarCategoria(id){
   abrirEditor('categoria',obj);
 }
 
+function editarUnidad(id){
+
+  const obj=hoy.find(
+    x=>String(x.id)===String(id)
+  );
+
+  if(!obj)return;
+
+  abrirEditor('unidad',obj);
+}
+
+function poblarSelectUnidad(){
+
+  const select=document.getElementById('editUnidad');
+
+  if(!select)return;
+
+  select.innerHTML=
+    UNIDADES
+      .map(u=>
+        `<option value="${escapeHtml(u.id)}">${escapeHtml(u.nombre)}</option>`
+      )
+      .join('');
+}
+
 function poblarSelectCategoria(){
 
   const select=document.getElementById('editCategoria');
@@ -1082,10 +1128,12 @@ function abrirEditor(tipo,obj){
   const input=document.getElementById('editValor');
   const inputTexto=document.getElementById('editTexto');
   const selectCategoria=document.getElementById('editCategoria');
+  const selectUnidad=document.getElementById('editUnidad');
 
   input.style.display='none';
   inputTexto.style.display='none';
   selectCategoria.style.display='none';
+  selectUnidad.style.display='none';
 
   if(tipo==='cantidad'){
 
@@ -1127,6 +1175,14 @@ function abrirEditor(tipo,obj){
     selectCategoria.style.display='block';
 
     selectCategoria.value=obj.categoria||'Otros';
+
+  }else if(tipo==='unidad'){
+
+    titulo.textContent='Editar unidad';
+
+    selectUnidad.style.display='block';
+
+    selectUnidad.value=obj.unidad||'unidad';
   }
 
   modal.dataset.id=String(obj.id);
@@ -1150,6 +1206,10 @@ function abrirEditor(tipo,obj){
     }else if(tipo==='categoria'){
 
       selectCategoria.focus();
+
+    }else if(tipo==='unidad'){
+
+      selectUnidad.focus();
     }
 
   },100);
@@ -1245,6 +1305,12 @@ function guardarEditor(){
     const selectCategoria=document.getElementById('editCategoria');
 
     obj.categoria=selectCategoria.value||'Otros';
+
+  }else if(tipo==='unidad'){
+
+    const selectUnidad=document.getElementById('editUnidad');
+
+    obj.unidad=selectUnidad.value||'unidad';
   }
 
   guardarStorage(STORAGE_HOY,hoy);
@@ -1368,7 +1434,17 @@ function importarDesdeTexto(){
       'unidad',
       'unidades',
       'paca',
-      'pacas'
+      'pacas',
+      'ml',
+      'l',
+      'litro',
+      'litros',
+      'caja',
+      'cajas',
+      'docena',
+      'docenas',
+      'bulto',
+      'bultos'
     ];
 
     let cant=1;
@@ -1398,6 +1474,18 @@ function importarDesdeTexto(){
 
       if(unidad==='pacas')
         unidad='paca';
+
+      if(unidad==='litro'||unidad==='litros')
+        unidad='l';
+
+      if(unidad==='cajas')
+        unidad='caja';
+
+      if(unidad==='docenas')
+        unidad='docena';
+
+      if(unidad==='bultos')
+        unidad='bulto';
 
     }else{
 
@@ -1877,7 +1965,13 @@ function render(){
 
                 <small>
                   ${it.cantidad}
-                  ${escapeHtml(it.unidad)}
+                  <span style="cursor:pointer;text-decoration:underline dotted"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Editar unidad"
+                        onclick="editarUnidad('${String(it.id)}')">
+                    ${escapeHtml(it.unidad)} ✏️
+                  </span>
                   -
                   ${valTxt}
                 </small>
@@ -2392,6 +2486,8 @@ document.getElementById('editTexto')
    ========================================================= */
 
 poblarSelectCategoria();
+
+poblarSelectUnidad();
 
 render();
 
