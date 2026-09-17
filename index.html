@@ -518,6 +518,14 @@ Cancelar
     step="any"
     autocomplete="off">
 
+<input id="editTexto"
+    type="text"
+    autocomplete="off"
+    style="display:none">
+
+<select id="editCategoria"
+    style="display:none"></select>
+
 <button class="btn btn-g" onclick="guardarEditor()">
 Guardar
 </button>
@@ -1030,32 +1038,95 @@ function editarPrecio(id){
   abrirEditor('precio',obj);
 }
 
+function editarNombre(id){
+
+  const obj=hoy.find(
+    x=>String(x.id)===String(id)
+  );
+
+  if(!obj)return;
+
+  abrirEditor('nombre',obj);
+}
+
+function editarCategoria(id){
+
+  const obj=hoy.find(
+    x=>String(x.id)===String(id)
+  );
+
+  if(!obj)return;
+
+  abrirEditor('categoria',obj);
+}
+
+function poblarSelectCategoria(){
+
+  const select=document.getElementById('editCategoria');
+
+  if(!select)return;
+
+  select.innerHTML=
+    CATEGORIAS
+      .filter(c=>c.id!=='Todas')
+      .map(c=>
+        `<option value="${escapeHtml(c.id)}">${c.icono} ${escapeHtml(c.nombre)}</option>`
+      )
+      .join('');
+}
+
 function abrirEditor(tipo,obj){
 
   const modal=document.getElementById('modalEdit');
   const titulo=document.getElementById('editTitulo');
   const input=document.getElementById('editValor');
+  const inputTexto=document.getElementById('editTexto');
+  const selectCategoria=document.getElementById('editCategoria');
+
+  input.style.display='none';
+  inputTexto.style.display='none';
+  selectCategoria.style.display='none';
 
   if(tipo==='cantidad'){
 
     titulo.textContent='Editar cantidad';
+
+    input.style.display='block';
 
     input.value=obj.cantidad??'';
 
     input.step='any';
     input.inputMode='decimal';
 
-  }else{
+  }else if(tipo==='precio'){
 
     titulo.textContent=
       obj.unitario
         ?'Editar precio por '+obj.unidad
         :'Agregar precio por '+obj.unidad;
 
+    input.style.display='block';
+
     input.value=obj.unitario??'';
 
     input.step='any';
     input.inputMode='decimal';
+
+  }else if(tipo==='nombre'){
+
+    titulo.textContent='Editar nombre del producto';
+
+    inputTexto.style.display='block';
+
+    inputTexto.value=obj.nombre??'';
+
+  }else if(tipo==='categoria'){
+
+    titulo.textContent='Editar categoría';
+
+    selectCategoria.style.display='block';
+
+    selectCategoria.value=obj.categoria||'Otros';
   }
 
   modal.dataset.id=String(obj.id);
@@ -1066,9 +1137,20 @@ function abrirEditor(tipo,obj){
 
   setTimeout(()=>{
 
-    input.focus();
+    if(tipo==='cantidad'||tipo==='precio'){
 
-    input.select();
+      input.focus();
+      input.select();
+
+    }else if(tipo==='nombre'){
+
+      inputTexto.focus();
+      inputTexto.select();
+
+    }else if(tipo==='categoria'){
+
+      selectCategoria.focus();
+    }
 
   },100);
 }
@@ -1090,8 +1172,6 @@ function guardarEditor(){
   const id=modal.dataset.id;
   const tipo=modal.dataset.tipo;
 
-  const input=document.getElementById('editValor');
-
   const obj=hoy.find(
     x=>String(x.id)===String(id)
   );
@@ -1103,40 +1183,68 @@ function guardarEditor(){
     return;
   }
 
-  const valor=parseFloat(input.value);
+  if(tipo==='cantidad'||tipo==='precio'){
 
-  if(isNaN(valor)||valor<=0){
+    const input=document.getElementById('editValor');
 
-    alert(
-      tipo==='cantidad'
-        ?'Ingrese una cantidad válida.'
-        :'Ingrese un precio válido.'
-    );
+    const valor=parseFloat(input.value);
 
-    input.focus();
+    if(isNaN(valor)||valor<=0){
 
-    return;
-  }
+      alert(
+        tipo==='cantidad'
+          ?'Ingrese una cantidad válida.'
+          :'Ingrese un precio válido.'
+      );
 
-  if(tipo==='cantidad'){
+      input.focus();
 
-    obj.cantidad=valor;
-
-    if(
-      obj.unitario!==null &&
-      Number(obj.unitario)>0
-    ){
-
-      obj.valor=
-        Number(obj.unitario)*obj.cantidad;
+      return;
     }
 
-  }else{
+    if(tipo==='cantidad'){
 
-    obj.unitario=valor;
+      obj.cantidad=valor;
 
-    obj.valor=
-      valor*(obj.cantidad||1);
+      if(
+        obj.unitario!==null &&
+        Number(obj.unitario)>0
+      ){
+
+        obj.valor=
+          Number(obj.unitario)*obj.cantidad;
+      }
+
+    }else{
+
+      obj.unitario=valor;
+
+      obj.valor=
+        valor*(obj.cantidad||1);
+    }
+
+  }else if(tipo==='nombre'){
+
+    const inputTexto=document.getElementById('editTexto');
+
+    const nombre=inputTexto.value.trim();
+
+    if(!nombre){
+
+      alert('Ingrese un nombre válido.');
+
+      inputTexto.focus();
+
+      return;
+    }
+
+    obj.nombre=nombre;
+
+  }else if(tipo==='categoria'){
+
+    const selectCategoria=document.getElementById('editCategoria');
+
+    obj.categoria=selectCategoria.value||'Otros';
   }
 
   guardarStorage(STORAGE_HOY,hoy);
@@ -1745,12 +1853,22 @@ function render(){
 
               <div style="min-width:0;overflow:hidden">
 
-                <b style="overflow-wrap:anywhere">
+                <b style="overflow-wrap:anywhere;cursor:pointer"
+                   role="button"
+                   tabindex="0"
+                   aria-label="Editar nombre"
+                   onclick="editarNombre('${String(it.id)}')">
                   ${escapeHtml(it.nombre)}
+                  <small style="opacity:.45;font-weight:400">✏️</small>
                 </b>
 
-                <span class="cat-mini">
-                  ${escapeHtml(it.categoria||'Otros')}
+                <span class="cat-mini"
+                      style="cursor:pointer"
+                      role="button"
+                      tabindex="0"
+                      aria-label="Editar categoría"
+                      onclick="editarCategoria('${String(it.id)}')">
+                  ${escapeHtml(it.categoria||'Otros')} ✏️
                 </span>
 
                 ${comp}
@@ -2258,9 +2376,22 @@ document.getElementById('editValor')
     }
   });
 
+document.getElementById('editTexto')
+  .addEventListener('keydown',function(e){
+
+    if(e.key==='Enter'){
+
+      e.preventDefault();
+
+      guardarEditor();
+    }
+  });
+
 /* =========================================================
    INICIALIZACIÓN
    ========================================================= */
+
+poblarSelectCategoria();
 
 render();
 

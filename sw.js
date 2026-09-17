@@ -2,7 +2,7 @@
    Cachea el "app shell" para que la app funcione instalada y sin internet.
    Los datos de la lista siguen guardándose en localStorage, en el dispositivo. */
 
-const CACHE_NAME = 'lista-mercado-v1';
+const CACHE_NAME = 'lista-mercado-v2';
 
 const ASSETS = [
   './',
