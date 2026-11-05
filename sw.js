@@ -8,7 +8,7 @@
    (v19 -> v20...) y también APP_VERSION en index.html.
 */
 
-const CACHE_NAME = 'lista-mercado-v19';
+const CACHE_NAME = 'lista-mercado-v20';
 
 const ASSETS = [
   './',
