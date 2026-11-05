@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -18,578 +17,331 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
 html{touch-action:manipulation}
 button,input,select,textarea{font:inherit}
-button{-webkit-tap-highlight-color:transparent}
+button{-webkit-tap-highlight-color:transparent;cursor:pointer}
 input,select,textarea{-webkit-appearance:none;appearance:none}
-
-.category-tabs{
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  padding:10px 2px 4px;
-  margin-top:4px;
-  scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
-}
-.category-tabs::-webkit-scrollbar{display:none}
-
-.category-tab{
-  flex:0 0 auto;
-  border:1px solid #e5e7eb;
-  background:white;
-  color:#4b5563;
-  border-radius:12px;
-  padding:9px 11px;
-  font-size:12px;
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,.04);
-}
-
-.category-tab.active{
-  background:#22c55e;
-  color:white;
-  border-color:#22c55e;
-}
-
-.category-tab small{
-  background:rgba(0,0,0,.08);
-  border-radius:10px;
-  padding:2px 5px;
-}
-
-.category-tab.active small{
-  background:rgba(255,255,255,.25)
-}
-
-.cat-mini{
-  display:inline-block;
-  background:#f3f4f6;
-  color:#6b7280;
-  border-radius:6px;
-  padding:2px 5px;
-  font-size:9px;
-  font-weight:700;
-}
-
-@media(max-width:600px){
-  body{padding-bottom:82px}
-  .header{padding:16px 12px}
-  .wrap{width:100%;padding:8px}
-  .card{padding:12px;margin-top:8px}
-  input,select,textarea{font-size:16px}
-  .btn{min-height:46px}
-  .edit-btn{min-width:38px;min-height:38px;padding:7px}
-  .check{width:30px;height:30px}
-}
 
 body{
   background:#f5f7fb;
-  padding-bottom:90px
+  padding-bottom:calc(90px + env(safe-area-inset-bottom))
 }
 
 .header{
   background:#22c55e;
   color:white;
-  padding:20px 16px
+  padding:calc(20px + env(safe-area-inset-top)) 16px 20px
 }
 
-.stats{
-  display:flex;
-  gap:6px;
-  margin-top:10px;
-  flex-wrap:wrap
-}
+.stats{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
 
 .stat{
-  flex:1;
-  min-width:70px;
+  flex:1;min-width:70px;
   background:rgba(255,255,255,.3);
-  padding:8px;
-  border-radius:10px;
-  font-size:11px;
-  font-weight:700
+  padding:8px;border-radius:10px;
+  font-size:11px;font-weight:700
 }
 
 .resumen{
   background:rgba(0,0,0,.15);
-  padding:10px;
-  border-radius:10px;
-  margin-top:10px;
-  font-size:13px;
-  font-weight:800;
+  padding:10px;border-radius:10px;
+  margin-top:10px;font-size:13px;font-weight:800;
   display:none
 }
 
-.wrap{
-  max-width:480px;
-  margin:0 auto;
-  padding:12px
-}
+.wrap{max-width:480px;margin:0 auto;padding:12px}
 
 .card{
-  background:white;
-  border-radius:16px;
-  padding:14px;
-  margin-top:12px;
+  background:white;border-radius:16px;
+  padding:14px;margin-top:12px;
   box-shadow:0 4px 20px rgba(0,0,0,.06)
 }
 
 input,select,textarea{
-  border:1.5px solid #e5e7eb;
-  border-radius:12px;
-  padding:12px;
-  width:100%;
-  font-size:16px;
-  margin-top:8px
+  border:1.5px solid #e5e7eb;border-radius:12px;
+  padding:12px;width:100%;font-size:16px;margin-top:8px
 }
 
 .btn{
-  border:none;
-  border-radius:12px;
-  padding:12px;
-  width:100%;
-  font-weight:800;
-  margin-top:8px;
-  cursor:pointer
+  border:none;border-radius:12px;padding:12px;width:100%;
+  font-weight:800;margin-top:8px
 }
-
 .btn-g{background:#22c55e;color:white}
 .btn-d{background:#111827;color:white}
 .btn-r{background:#fee2e2;color:#991b1b}
 .btn-blue{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
 .btn-outline{background:white;color:#22c55e;border:1.5px solid #22c55e}
 
+.category-tabs{
+  display:flex;gap:7px;overflow-x:auto;
+  padding:10px 2px 4px;margin-top:4px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch
+}
+.category-tabs::-webkit-scrollbar{display:none}
+
+.category-tab{
+  flex:0 0 auto;border:1px solid #e5e7eb;background:white;color:#4b5563;
+  border-radius:12px;padding:9px 11px;font-size:12px;font-weight:800;
+  display:flex;align-items:center;gap:5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04)
+}
+.category-tab.active{background:#22c55e;color:white;border-color:#22c55e}
+.category-tab small{background:rgba(0,0,0,.08);border-radius:10px;padding:2px 5px}
+.category-tab.active small{background:rgba(255,255,255,.25)}
+
+.cat-mini{
+  display:inline-block;background:#f3f4f6;color:#6b7280;
+  border-radius:6px;padding:2px 5px;font-size:9px;font-weight:700
+}
+
 .item{
-  padding:12px 0;
-  border-bottom:1px solid #f3f4f6;
-  display:flex;
-  justify-content:space-between;
-  align-items:center
+  padding:12px 0;border-bottom:1px solid #f3f4f6;
+  display:flex;justify-content:space-between;align-items:center
 }
-
-.item.listo{
-  opacity:.5;
-  background:#f0fdf4;
-  border-radius:8px;
-  padding:12px
-}
-
+.item.listo{opacity:.5;background:#f0fdf4;border-radius:8px;padding:12px}
 .item.listo b{text-decoration:line-through}
 
 .check{
-  width:26px;
-  height:26px;
-  border-radius:50%;
-  border:2px solid #d1d5db;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-  cursor:pointer;
-  flex-shrink:0;
-  margin-right:10px;
-  background:white
+  width:26px;height:26px;border-radius:50%;border:2px solid #d1d5db;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;cursor:pointer;flex-shrink:0;margin-right:10px;background:white
 }
-
-.check.done{
-  background:#22c55e;
-  border-color:#22c55e;
-  color:white
-}
+.check.done{background:#22c55e;border-color:#22c55e;color:white}
 
 .hint{
-  border-radius:10px;
-  padding:8px 10px;
-  font-size:12px;
-  margin-top:8px;
-  display:none;
-  font-weight:600
+  border-radius:10px;padding:8px 10px;font-size:12px;
+  margin-top:8px;display:none;font-weight:600
 }
-
 .hint.show{display:block}
 
-.badge-up{
-  background:#fee2e2;
-  color:#991b1b;
-  padding:2px 7px;
-  border-radius:20px;
-  font-size:10px;
-  font-weight:800
+.badge-up,.badge-down,.badge-same{
+  padding:2px 7px;border-radius:20px;font-size:10px;font-weight:800;white-space:nowrap
 }
+.badge-up{background:#fee2e2;color:#991b1b}
+.badge-down{background:#dcfce7;color:#166534}
+.badge-same{background:#e0f2fe;color:#075985}
 
-.badge-down{
-  background:#dcfce7;
-  color:#166534;
-  padding:2px 7px;
-  border-radius:20px;
-  font-size:10px;
-  font-weight:800
-}
-
-.badge-same{
-  background:#e0f2fe;
-  color:#075985;
-  padding:2px 7px;
-  border-radius:20px;
-  font-size:10px;
-  font-weight:800
-}
-
-.resumen-guard{
-  padding:10px;
-  border-radius:8px;
-  font-size:12px;
-  font-weight:800;
-  margin-top:8px
-}
+.resumen-guard{padding:10px;border-radius:8px;font-size:12px;font-weight:800;margin-top:8px}
 
 .unitario{
-  background:#eff6ff;
-  border:1px solid #bfdbfe;
-  color:#1e40af;
-  padding:10px;
-  border-radius:10px;
-  font-size:13px;
-  font-weight:700;
-  margin-top:8px;
-  display:none
+  background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;
+  padding:10px;border-radius:10px;font-size:13px;font-weight:700;
+  margin-top:8px;display:none
 }
-
 .unitario.show{display:block}
 
 .edit-btn{
-  border:none;
-  background:#f3f4f6;
-  border-radius:8px;
-  padding:6px 8px;
-  font-size:13px;
-  margin-left:4px
+  border:none;background:#f3f4f6;border-radius:8px;
+  padding:6px 8px;font-size:13px;margin-left:4px
 }
 
 .tabs{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:white;
-  display:flex;
-  border-top:1px solid #eee;
-  padding:8px 0
+  position:fixed;bottom:0;left:0;right:0;background:white;
+  display:flex;border-top:1px solid #eee;
+  padding:8px 0 calc(8px + env(safe-area-inset-bottom));
+  z-index:50
 }
-
 .tab{
-  flex:1;
-  text-align:center;
-  font-size:11px;
-  color:#9ca3af
+  flex:1;text-align:center;font-size:11px;color:#9ca3af;
+  background:none;border:none;padding:2px 0
 }
-
-.tab.active{
-  color:#22c55e;
-  font-weight:800
-}
+.tab.active{color:#22c55e;font-weight:800}
 
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.5);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
-  z-index:99
+  position:fixed;inset:0;background:rgba(0,0,0,.5);
+  display:none;align-items:center;justify-content:center;
+  padding:16px;z-index:99
+}
+.modal.show{display:flex}
+.modal-box{background:white;border-radius:16px;padding:16px;width:100%;max-width:420px}
+
+.toast{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(76px + env(safe-area-inset-bottom));
+  background:#111827;color:white;border-radius:12px;
+  padding:10px 14px;font-size:13px;font-weight:700;
+  display:none;align-items:center;gap:12px;
+  box-shadow:0 6px 24px rgba(0,0,0,.25);z-index:120;
+  max-width:calc(100% - 24px)
+}
+.toast.show{display:flex}
+.toast button{
+  background:#22c55e;color:white;border:none;border-radius:8px;
+  padding:6px 10px;font-weight:800;flex-shrink:0
 }
 
-.modal.show{display:flex}
-
-.modal-box{
-  background:white;
-  border-radius:16px;
-  padding:16px;
-  width:100%;
-  max-width:420px
+/* Va AL FINAL para que gane sobre las reglas base */
+@media(max-width:600px){
+  .header{padding:calc(16px + env(safe-area-inset-top)) 12px 16px}
+  .wrap{width:100%;padding:8px}
+  .card{padding:12px;margin-top:8px}
+  .btn{min-height:46px}
+  .edit-btn{min-width:38px;min-height:38px;padding:7px}
+  .check{width:30px;height:30px}
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="header">
-<h1>🛒 Lista de Mercado</h1>
+  <h1>🛒 Lista de Mercado</h1>
 
-<div class="stats">
-<div class="stat">📦 <b id="tp">0</b> Hoy</div>
-<div class="stat">💲 <b id="tg">$0</b> Total</div>
-<div class="stat">🗂️ <b id="th">0</b> Guard</div>
-<div class="stat" id="statAhorro" style="display:none">
-<b id="tAhorro">$0</b>
-</div>
-<div class="stat">✅ <b id="tListo">0/0</b></div>
-</div>
+  <div class="stats">
+    <div class="stat">📦 <b id="tp">0</b> Hoy</div>
+    <div class="stat">💲 <b id="tg">$0</b> Total</div>
+    <div class="stat">🗂️ <b id="th">0</b> Guard</div>
+    <div class="stat" id="statAhorro" style="display:none"><b id="tAhorro">$0</b></div>
+    <div class="stat">✅ <b id="tListo">0/0</b></div>
+  </div>
 
-<div id="resumen" class="resumen"></div>
+  <div id="resumen" class="resumen"></div>
 </div>
 
 <div class="wrap">
 
-<div id="v-hoy">
+  <div id="v-hoy">
 
-<div class="card">
+    <div class="card">
+      <input id="nom" placeholder="Ej: Ingrese un producto" autocomplete="off">
 
-<input id="nom" placeholder="Ej: Ingrese un producto">
+      <select id="cat">
+        <option value="Granos y abarrotes">🌾 Granos y abarrotes</option>
+        <option value="Carne">🥩 Carne</option>
+        <option value="Aseo">🧹 Aseo</option>
+        <option value="Frutas y verduras">🥦 Frutas y verduras</option>
+        <option value="Lácteos">🥛 Lácteos</option>
+        <option value="Bebidas">🥤 Bebidas</option>
+        <option value="Otros">📦 Otros</option>
+      </select>
 
-<select id="cat">
-<option value="Granos y abarrotes">🌾 Granos y abarrotes</option>
-<option value="Carne">🥩 Carne</option>
-<option value="Aseo">🧹 Aseo</option>
-<option value="Frutas y verduras">🥦 Frutas y verduras</option>
-<option value="Lácteos">🥛 Lácteos</option>
-<option value="Bebidas">🥤 Bebidas</option>
-<option value="Otros">📦 Otros</option>
-</select>
+      <div style="display:flex;gap:8px">
+        <input id="cant" type="text" inputmode="decimal" placeholder="Cantidad" autocomplete="off">
+        <select id="uni">
+          <option value="kg" selected>kg</option>
+          <option value="lb">lb</option>
+          <option value="g">g</option>
+          <option value="unidad">unidad</option>
+          <option value="paca">Paca</option>
+          <option value="ml">ml</option>
+          <option value="l">Litro</option>
+          <option value="caja">Caja</option>
+          <option value="docena">Docena</option>
+          <option value="bulto">Bulto</option>
+        </select>
+      </div>
 
-<div style="display:flex;gap:8px">
+      <input id="val" type="text" inputmode="decimal" placeholder="Precio por kg (opcional)" autocomplete="off">
 
-<input id="cant"
-    type="number"
-    inputmode="decimal"
-    placeholder="Cantidad">
+      <div id="calcUnit" class="unitario"></div>
+      <div id="hint" class="hint"></div>
 
-<select id="uni">
-<option value="kg" selected>kg</option>
-<option value="lb">lb</option>
-<option value="g">g</option>
-<option value="unidad">unidad</option>
-<option value="paca">Paca</option>
-<option value="ml">ml</option>
-<option value="l">Litro</option>
-<option value="caja">Caja</option>
-<option value="docena">Docena</option>
-<option value="bulto">Bulto</option>
-</select>
+      <button class="btn btn-g" onclick="add()">+ Agregar a Hoy</button>
 
-</div>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn btn-outline" style="flex:1" onclick="importarPlantillaBase()">📥 Plantilla Vacía</button>
+        <button class="btn btn-blue" style="flex:1" onclick="openImportModal()">📋 Pegar Lista</button>
+      </div>
 
-<input id="val"
-    type="number"
-    inputmode="decimal"
-    placeholder="Precio (opcional)">
+      <small style="color:#6b7280;display:block;margin-top:6px;text-align:center">
+        El precio es opcional. Puedes agregarlo después.
+      </small>
+    </div>
 
-<div id="calcUnit" class="unitario"></div>
+    <div class="category-tabs" id="categoryTabs"></div>
 
-<div id="hint" class="hint"></div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;font-weight:800">
+        <span>Mi Canasta <small id="chListo" style="color:#22c55e"></small></span>
+        <span id="ch">0 prod</span>
+      </div>
 
-<button class="btn btn-g" onclick="add()">
-+ Agregar a Hoy
-</button>
+      <div id="lh"></div>
 
-<div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-d" onclick="saveM()">💾 Guardar Mercado</button>
+      <button class="btn btn-r" onclick="clearToday()">🗑️ Borrar Hoy</button>
+    </div>
 
-<button class="btn btn-outline"
-     style="flex:1"
-     onclick="importarPlantillaBase()">
-📥 Plantilla Vacía </button>
+  </div>
 
-<button class="btn btn-blue"
-     style="flex:1"
-     onclick="openImportModal()">
-📋 Pegar Lista </button>
+  <div id="v-guard" style="display:none">
+    <div class="card">
+      <b>Guardados</b>
+      <div id="lg"></div>
 
-</div>
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid #eee">
+        <b>💾 Respaldo</b>
+        <small style="display:block;color:#6b7280;margin-top:4px">
+          Guarda tus datos en un archivo para pasarlos entre PC, iPhone y Android.
+          En iPhone, la app instalada y Safari guardan datos por separado.
+        </small>
 
-<small style="color:#6b7280;display:block;margin-top:6px;text-align:center">
-El precio es opcional. Puedes agregarlo después.
-</small>
+        <button class="btn btn-blue" onclick="exportarDatos()">📤 Exportar datos</button>
 
-</div>
+        <label class="btn btn-outline" style="display:block;text-align:center;cursor:pointer">
+          📥 Importar datos
+          <input type="file" accept=".json,application/json" onchange="importarDatosArchivo(this)" style="display:none">
+        </label>
+      </div>
+    </div>
+  </div>
 
-<div class="category-tabs" id="categoryTabs"></div>
-
-<div class="card">
-
-<div style="display:flex;justify-content:space-between;font-weight:800">
-<span>
-Mi Canasta
-<small id="chListo" style="color:#22c55e"></small>
-</span>
-<span id="ch">0 prod</span>
-</div>
-
-<div id="lh"></div>
-
-<button class="btn btn-d" onclick="saveM()">
-💾 Guardar Mercado
-</button>
-
-<button class="btn btn-r" onclick="clearToday()">
-🗑️ Borrar Hoy
-</button>
-
-</div>
-
-</div>
-
-<div id="v-guard" style="display:none">
-
-<div class="card">
-
-<b>Guardados</b>
-
-<div id="lg"></div>
-
-<div style="margin-top:16px;padding-top:12px;border-top:1px solid #eee">
-
-<b>💾 Respaldo</b>
-
-<small style="display:block;color:#6b7280;margin-top:4px">
-Puedes guardar tus datos en un archivo y pasarlos entre PC, iPhone y Android.
-</small>
-
-<button class="btn btn-blue" onclick="exportarDatos()">
-📤 Exportar datos
-</button>
-
-<label class="btn btn-outline"
-    style="display:block;text-align:center;cursor:pointer">
-
-📥 Importar datos
-
-<input type="file"
-    accept=".json,application/json"
-    onchange="importarDatosArchivo(this)"
-    style="display:none">
-
-</label>
-
-</div>
-
-</div>
-
-</div>
 </div>
 
 <!-- MODAL IMPORTAR -->
+<div id="modalImport" class="modal">
+  <div class="modal-box">
+    <b>📋 Importar lista en blanco</b><br>
+    <small style="color:#6b7280">
+      Pega tu lista, una por línea. Ej:<br>
+      Higienico 1 paca<br>
+      Carne de res 1/2 lb<br>
+      Arroz 2kg
+    </small>
 
-<div id="modalImport"
-     class="modal"
-     onclick="if(event.target===this)closeImportModal()">
+    <textarea id="txtImport" rows="8"
+      placeholder="Higienico 1 paca&#10;Leche 1 paca&#10;Cerdo 1 kg&#10;Arroz 2kg&#10;Aceite 1 unidad"></textarea>
 
-<div class="modal-box">
-
-<b>📋 Importar lista en blanco</b>
-
-<br>
-
-<small style="color:#6b7280">
-Pega tu lista, una por línea.<br>
-Ej:<br>
-Higienico 1 paca<br>
-Carne de res 1 lb<br>
-Leche 2 unidad
-</small>
-
-<textarea id="txtImport"
-          rows="8"
-          placeholder="Higienico 1 paca&#10;Leche 1 paca&#10;Cerdo 2 paca&#10;Carne de res 1 paca&#10;Arroz 2 kg&#10;Aceite 1 unidad"></textarea>
-
-<button class="btn btn-g" onclick="importarDesdeTexto()">
-Importar en Blanco
-</button>
-
-<button class="btn btn-r" onclick="closeImportModal()">
-Cancelar
-</button>
-
-</div>
+    <button class="btn btn-g" onclick="importarDesdeTexto()">Importar en Blanco</button>
+    <button class="btn btn-r" onclick="closeImportModal()">Cancelar</button>
+  </div>
 </div>
 
 <!-- MODAL EDITAR -->
+<div id="modalEdit" class="modal" aria-hidden="true">
+  <div class="modal-box">
+    <b id="editTitulo">Editar</b>
+    <input id="editValor" type="text" inputmode="decimal" autocomplete="off">
+    <input id="editTexto" type="text" autocomplete="off" style="display:none">
+    <select id="editCategoria" style="display:none"></select>
+    <select id="editUnidad" style="display:none"></select>
 
-<div id="modalEdit"
-     class="modal"
-     aria-hidden="true">
-
-<div class="modal-box">
-
-<b id="editTitulo">Editar</b>
-
-<input id="editValor"
-    type="number"
-    inputmode="decimal"
-    step="any"
-    autocomplete="off">
-
-<input id="editTexto"
-    type="text"
-    autocomplete="off"
-    style="display:none">
-
-<select id="editCategoria"
-    style="display:none"></select>
-
-<select id="editUnidad"
-    style="display:none"></select>
-
-<button class="btn btn-g" onclick="guardarEditor()">
-Guardar
-</button>
-
-<button class="btn btn-r" onclick="cerrarEditor()">
-Cancelar
-</button>
-
-</div>
+    <button class="btn btn-g" onclick="guardarEditor()">Guardar</button>
+    <button class="btn btn-r" onclick="cerrarEditor()">Cancelar</button>
+  </div>
 </div>
 
-<div class="tabs">
-
-<div class="tab active"
-     id="t-hoy"
-     onclick="showTab('hoy')">
-🛒<br>Hoy
+<!-- AVISO / DESHACER -->
+<div id="toast" class="toast" role="status" aria-live="polite">
+  <span id="toastTxt"></span>
+  <button id="toastBtn" type="button">Deshacer</button>
 </div>
 
-<div class="tab"
-     id="t-guard"
-     onclick="showTab('guard')">
-🗂️<br>Guardados
-</div>
-
-</div>
+<nav class="tabs">
+  <button class="tab active" id="t-hoy" onclick="showTab('hoy')">🛒<br>Hoy</button>
+  <button class="tab" id="t-guard" onclick="showTab('guard')">🗂️<br>Guardados</button>
+</nav>
 
 <script>
 'use strict';
 
 /* =========================================================
    LISTA DE MERCADO - MULTIPLATAFORMA
-   Precio opcional al agregar
    ========================================================= */
 
-const STORAGE_HOY='hoy_v17';
+const APP_VERSION='19';          // súbelo junto con CACHE_NAME en sw.js
+const STORAGE_HOY='hoy_v17';     // NO cambiar: aquí están tus datos
 const STORAGE_HIST='hist_v17';
 
-let hoy=cargarStorage(STORAGE_HOY,[]);
-let hist=cargarStorage(STORAGE_HIST,[]);
-
-hoy=hoy.map(x=>({
-  ...x,
-  categoria:x.categoria||'Otros'
-}));
-
-hist=hist.map(h=>({
-  ...h,
-  items:(h.items||[]).map(x=>({
-    ...x,
-    categoria:x.categoria||'Otros'
-  }))
-}));
-
-let idSeq=Date.now();
-let categoriaActiva='Todas';
+const $=id=>document.getElementById(id);
 
 const CATEGORIAS=[
   {id:'Todas',nombre:'Todas',icono:'🛒'},
@@ -615,1762 +367,89 @@ const UNIDADES=[
   {id:'bulto',nombre:'Bulto'}
 ];
 
-/* =========================================================
-   LISTA BASE
-   ========================================================= */
+const ALIAS_UNIDAD={
+  kg:'kg',kgs:'kg',kilo:'kg',kilos:'kg',
+  lb:'lb',lbs:'lb',libra:'lb',libras:'lb',
+  g:'g',gr:'g',grs:'g',gramo:'g',gramos:'g',
+  unidad:'unidad',unidades:'unidad',und:'unidad',unds:'unidad',
+  paca:'paca',pacas:'paca',
+  ml:'ml',
+  l:'l',lt:'l',lts:'l',litro:'l',litros:'l',
+  caja:'caja',cajas:'caja',
+  docena:'docena',docenas:'docena',
+  bulto:'bulto',bultos:'bulto'
+};
 
 const PLANTILLA_BASE=[
-  {nombre:"Higienico",cantidad:1,unidad:"paca",categoria:"Aseo"},
-  {nombre:"Leche",cantidad:1,unidad:"paca",categoria:"Lácteos"},
-  {nombre:"Cerdo",cantidad:2,unidad:"paca",categoria:"Carne"},
-  {nombre:"Carne de res",cantidad:1,unidad:"paca",categoria:"Carne"},
-  {nombre:"Pollo",cantidad:2,unidad:"kg",categoria:"Carne"},
-  {nombre:"Arroz",cantidad:2,unidad:"kg",categoria:"Granos y abarrotes"},
-  {nombre:"Aceite",cantidad:1,unidad:"unidad",categoria:"Granos y abarrotes"},
-  {nombre:"Huevos",cantidad:2,unidad:"paca",categoria:"Lácteos"},
-  {nombre:"Panela",cantidad:1,unidad:"paca",categoria:"Granos y abarrotes"},
-  {nombre:"Papa",cantidad:3,unidad:"kg",categoria:"Frutas y verduras"}
+  {nombre:'Higienico',cantidad:1,unidad:'paca',categoria:'Aseo'},
+  {nombre:'Leche',cantidad:1,unidad:'paca',categoria:'Lácteos'},
+  {nombre:'Cerdo',cantidad:1,unidad:'kg',categoria:'Carne'},
+  {nombre:'Carne de res',cantidad:1,unidad:'kg',categoria:'Carne'},
+  {nombre:'Pollo',cantidad:2,unidad:'kg',categoria:'Carne'},
+  {nombre:'Arroz',cantidad:2,unidad:'kg',categoria:'Granos y abarrotes'},
+  {nombre:'Aceite',cantidad:1,unidad:'unidad',categoria:'Granos y abarrotes'},
+  {nombre:'Huevos',cantidad:30,unidad:'unidad',categoria:'Otros'},
+  {nombre:'Panela',cantidad:1,unidad:'paca',categoria:'Granos y abarrotes'},
+  {nombre:'Papa',cantidad:3,unidad:'kg',categoria:'Frutas y verduras'}
 ];
 
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+
 function nuevoId(){
-  idSeq++;
-  return Date.now()+idSeq;
+  if(window.crypto&&typeof crypto.randomUUID==='function')return crypto.randomUUID();
+  return Date.now().toString(36)+Math.random().toString(36).slice(2,10);
 }
 
-function cargarStorage(clave,defecto){
-  try{
-    const raw=localStorage.getItem(clave);
-
-    if(!raw)return defecto;
-
-    const data=JSON.parse(raw);
-
-    return Array.isArray(data)?data:defecto;
-
-  }catch(e){
-
-    console.warn('No se pudo leer almacenamiento:',e);
-
-    return defecto;
-  }
+function idSeguro(id){
+  const s=String(id??'');
+  return /^[A-Za-z0-9_-]{1,64}$/.test(s)?s:nuevoId();
 }
 
-function guardarStorage(clave,valor){
-
-  try{
-
-    localStorage.setItem(clave,JSON.stringify(valor));
-
-    return true;
-
-  }catch(e){
-
-    alert('El navegador no permite guardar los datos localmente. Verifique el modo privado/incógnito o los permisos de almacenamiento.');
-
-    console.error(e);
-
-    return false;
-  }
+function norm(s){
+  return String(s||'')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
 }
 
-/* =========================================================
-   HISTORIAL DE PRECIOS
-   ========================================================= */
+/* Acepta "2,5", "1/2", "½", "1½" y, para precios, "4.500" = 4500 */
+function parseNum(v,esPrecio){
+  let s=String(v??'').trim().replace(/\s+/g,'').replace(/\$/g,'');
+  if(!s)return NaN;
 
-function getLastPrice(nombre){
+  s=s.replace(/(\d)?½/,(m,d)=>(d||'0')+'.5')
+     .replace(/(\d)?¼/,(m,d)=>(d||'0')+'.25')
+     .replace(/(\d)?¾/,(m,d)=>(d||'0')+'.75');
 
-  nombre=nombre.toLowerCase().trim();
+  const fr=s.match(/^(\d+)\/(\d+)$/);
+  if(fr)return Number(fr[2])>0?Number(fr[1])/Number(fr[2]):NaN;
 
-  if(!nombre)return null;
-
-  for(let h of hist){
-
-    if(!h||!Array.isArray(h.items))continue;
-
-    for(let it of h.items){
-
-      if(
-        it &&
-        it.nombre &&
-        it.nombre.toLowerCase().trim()===nombre &&
-        Number(it.unitario)>0
-      ){
-
-        return it;
-      }
-    }
+  if(s.includes('.')&&s.includes(',')){
+    s=s.replace(/\./g,'').replace(',','.');
+  }else if(s.includes(',')){
+    s=s.replace(',','.');
+  }else if(esPrecio&&/^\d{1,3}(\.\d{3})+$/.test(s)){
+    s=s.replace(/\./g,'');
   }
 
-  return null;
+  const n=Number(s);
+  return isFinite(n)?n:NaN;
 }
 
-function getPrevPrice(nombre,fromIndex){
+function redondear(n){return Math.round(n*1000)/1000}
 
-  nombre=nombre.toLowerCase().trim();
+const fmt$=n=>'$'+Math.round(Number(n)||0).toLocaleString('es-CO');
+const fmtN=n=>(Number(n)||0).toLocaleString('es-CO',{maximumFractionDigits:2});
 
-  for(let j=fromIndex+1;j<hist.length;j++){
-
-    if(!hist[j]||!Array.isArray(hist[j].items))continue;
-
-    for(let it of hist[j].items){
-
-      if(
-        it &&
-        it.nombre &&
-        it.nombre.toLowerCase().trim()===nombre &&
-        Number(it.unitario)>0
-      ){
-
-        return it;
-      }
-    }
-  }
-
-  return null;
+function nombreUnidad(id){
+  const u=UNIDADES.find(x=>x.id===id);
+  return u?u.nombre:String(id||'');
 }
-
-/* =========================================================
-   CALCULO
-   ========================================================= */
-
-function calcUnitario(){
-
-  const c=parseFloat(document.getElementById('cant').value);
-  const v=parseFloat(document.getElementById('val').value);
-  const u=document.getElementById('uni').value;
-  const div=document.getElementById('calcUnit');
-
-  document.getElementById('val').placeholder=
-    u==='unidad'
-      ?'Precio por unidad (opcional)'
-      :u==='paca'
-        ?'Precio por paca (opcional)'
-        :`Precio por ${u} (opcional)`;
-
-  if(!c||!v||c<=0||v<=0){
-
-    div.classList.remove('show');
-
-    return;
-  }
-
-  const total=v*c;
-
-  div.innerHTML=
-    `💲 <b>$${Math.round(v).toLocaleString('es-CO')} por ${u}</b> × ${c} ${u} = `+
-    `<b>$${Math.round(total).toLocaleString('es-CO')} total</b>`;
-
-  div.classList.add('show');
-}
-
-/* =========================================================
-   COMPROBAR HISTORIAL
-   ========================================================= */
-
-function checkHist(){
-
-  const n=document.getElementById('nom').value.trim();
-  const v=parseFloat(document.getElementById('val').value);
-  const hint=document.getElementById('hint');
-
-  if(!n){
-
-    hint.classList.remove('show');
-
-    return;
-  }
-
-  const res=getLastPrice(n);
-
-  if(!res){
-
-    if(n.length>2){
-
-      hint.innerHTML=
-        `🆕 Primera vez <b>${escapeHtml(n)}</b>`;
-
-      hint.style.background='#f0fdf4';
-      hint.style.color='#166534';
-      hint.style.border='1px solid #bbf7d0';
-
-      hint.classList.add('show');
-
-    }else{
-
-      hint.classList.remove('show');
-
-    }
-
-    return;
-  }
-
-  const last=Number(res.unitario);
-
-  if(isNaN(v)||v<=0){
-
-    hint.innerHTML=
-      `📋 Última vez: <b>$${last.toLocaleString('es-CO')} por ${res.unidad}</b>`;
-
-    hint.style.background='#fef3c7';
-    hint.style.color='#92400e';
-    hint.style.border='1px solid #fcd34d';
-
-    hint.classList.add('show');
-
-    return;
-  }
-
-  const diff=v-last;
-
-  const perc=last>0
-    ?((diff/last)*100).toFixed(1)
-    :0;
-
-  if(diff===0){
-
-    hint.innerHTML=`✅ <b>Mismo precio</b>`;
-
-    hint.style.background='#e0f2fe';
-    hint.style.color='#075985';
-    hint.style.border='1px solid #7dd3fc';
-
-  }else if(diff>0){
-
-    hint.innerHTML=
-      `🔺 <b>Subió $${Math.abs(diff).toLocaleString('es-CO')}</b> (+${perc}%)`;
-
-    hint.style.background='#fee2e2';
-    hint.style.color='#991b1b';
-    hint.style.border='1px solid #fca5a5';
-
-  }else{
-
-    hint.innerHTML=
-      `🔻 <b>Bajó $${Math.abs(diff).toLocaleString('es-CO')}</b> (${perc}%)`;
-
-    hint.style.background='#dcfce7';
-    hint.style.color='#166534';
-    hint.style.border='1px solid #86efac';
-  }
-
-  hint.classList.add('show');
-}
-
-/* =========================================================
-   AGREGAR PRODUCTO
-   EL PRECIO AHORA ES OPCIONAL
-   ========================================================= */
-
-function add(){
-
-  const n=document.getElementById('nom').value.trim();
-
-  if(!n){
-
-    alert('Ingrese producto');
-
-    document.getElementById('nom').focus();
-
-    return;
-  }
-
-  let c=parseFloat(document.getElementById('cant').value);
-
-  const u=document.getElementById('uni').value;
-
-  const v=parseFloat(document.getElementById('val').value);
-
-  if(isNaN(c)||c<=0)c=1;
-
-  /*
-     IMPORTANTE:
-     El precio ya NO es obligatorio.
-     Si está vacío se guardan:
-       unitario:null
-       valor:null
-  */
-
-  let unitario=null;
-  let total=null;
-
-  if(!isNaN(v)&&v>0){
-
-    unitario=v;
-    total=v*c;
-  }
-
-  hoy.push({
-
-    id:nuevoId(),
-
-    nombre:n,
-
-    cantidad:c,
-
-    unidad:u,
-
-    categoria:document.getElementById('cat').value||'Otros',
-
-    valor:total,
-
-    unitario:unitario,
-
-    listo:false
-  });
-
-  if(!guardarStorage(STORAGE_HOY,hoy))return;
-
-  document.getElementById('nom').value='';
-  document.getElementById('cant').value='';
-  document.getElementById('val').value='';
-
-  document.getElementById('cat').value=
-    categoriaActiva!=='Todas'
-      ?categoriaActiva
-      :'Granos y abarrotes';
-
-  document.getElementById('hint').classList.remove('show');
-
-  document.getElementById('calcUnit').classList.remove('show');
-
-  render();
-
-  document.getElementById('nom').focus();
-}
-
-/* =========================================================
-   GUARDAR MERCADO
-   ========================================================= */
-
-function saveM(){
-
-  if(!hoy.length){
-
-    alert('Nada hoy');
-
-    return;
-  }
-
-  const f=new Date().toLocaleDateString(
-    'es-CO',
-    {
-      day:'2-digit',
-      month:'short',
-      year:'numeric',
-      hour:'2-digit',
-      minute:'2-digit'
-    }
-  );
-
-  /*
-     Solo se suman productos que tengan precio.
-  */
-
-  const tot=hoy.reduce(
-    (a,b)=>a+(Number(b.valor)||0),
-    0
-  );
-
-  hist.unshift({
-
-    id:nuevoId(),
-
-    fecha:f,
-
-    total:tot,
-
-    items:JSON.parse(JSON.stringify(hoy))
-  });
-
-  if(!guardarStorage(STORAGE_HIST,hist))return;
-
-  hoy=[];
-
-  if(!guardarStorage(STORAGE_HOY,hoy))return;
-
-  alert('Mercado guardado correctamente.');
-
-  render();
-
-  showTab('guard');
-}
-
-/* =========================================================
-   CARGAR PLANTILLA DESDE HISTORIAL
-   ========================================================= */
-
-function cargarPlantilla(index){
-
-  if(!hist[index]||!Array.isArray(hist[index].items))return;
-
-  if(
-    hoy.length>0 &&
-    !confirm('¿Agregar esta plantilla a Hoy?')
-  )return;
-
-  const plantilla=hist[index].items.map(x=>({
-
-    id:nuevoId(),
-
-    nombre:x.nombre,
-
-    cantidad:x.cantidad,
-
-    unidad:x.unidad,
-
-    categoria:x.categoria||'Otros',
-
-    valor:null,
-
-    unitario:null,
-
-    listo:false
-  }));
-
-  hoy=[...hoy,...plantilla];
-
-  guardarStorage(STORAGE_HOY,hoy);
-
-  render();
-
-  showTab('hoy');
-}
-
-/* =========================================================
-   EDITAR
-   ========================================================= */
-
-function editarCantidad(id){
-
-  const obj=hoy.find(
-    x=>String(x.id)===String(id)
-  );
-
-  if(!obj)return;
-
-  abrirEditor('cantidad',obj);
-}
-
-function editarPrecio(id){
-
-  const obj=hoy.find(
-    x=>String(x.id)===String(id)
-  );
-
-  if(!obj)return;
-
-  abrirEditor('precio',obj);
-}
-
-function editarNombre(id){
-
-  const obj=hoy.find(
-    x=>String(x.id)===String(id)
-  );
-
-  if(!obj)return;
-
-  abrirEditor('nombre',obj);
-}
-
-function editarCategoria(id){
-
-  const obj=hoy.find(
-    x=>String(x.id)===String(id)
-  );
-
-  if(!obj)return;
-
-  abrirEditor('categoria',obj);
-}
-
-function editarUnidad(id){
-
-  const obj=hoy.find(
-    x=>String(x.id)===String(id)
-  );
-
-  if(!obj)return;
-
-  abrirEditor('unidad',obj);
-}
-
-function poblarSelectUnidad(){
-
-  const select=document.getElementById('editUnidad');
-
-  if(!select)return;
-
-  select.innerHTML=
-    UNIDADES
-      .map(u=>
-        `<option value="${escapeHtml(u.id)}">${escapeHtml(u.nombre)}</option>`
-      )
-      .join('');
-}
-
-function poblarSelectCategoria(){
-
-  const select=document.getElementById('editCategoria');
-
-  if(!select)return;
-
-  select.innerHTML=
-    CATEGORIAS
-      .filter(c=>c.id!=='Todas')
-      .map(c=>
-        `<option value="${escapeHtml(c.id)}">${c.icono} ${escapeHtml(c.nombre)}</option>`
-      )
-      .join('');
-}
-
-function abrirEditor(tipo,obj){
-
-  const modal=document.getElementById('modalEdit');
-  const titulo=document.getElementById('editTitulo');
-  const input=document.getElementById('editValor');
-  const inputTexto=document.getElementById('editTexto');
-  const selectCategoria=document.getElementById('editCategoria');
-  const selectUnidad=document.getElementById('editUnidad');
-
-  input.style.display='none';
-  inputTexto.style.display='none';
-  selectCategoria.style.display='none';
-  selectUnidad.style.display='none';
-
-  if(tipo==='cantidad'){
-
-    titulo.textContent='Editar cantidad';
-
-    input.style.display='block';
-
-    input.value=obj.cantidad??'';
-
-    input.step='any';
-    input.inputMode='decimal';
-
-  }else if(tipo==='precio'){
-
-    titulo.textContent=
-      obj.unitario
-        ?'Editar precio por '+obj.unidad
-        :'Agregar precio por '+obj.unidad;
-
-    input.style.display='block';
-
-    input.value=obj.unitario??'';
-
-    input.step='any';
-    input.inputMode='decimal';
-
-  }else if(tipo==='nombre'){
-
-    titulo.textContent='Editar nombre del producto';
-
-    inputTexto.style.display='block';
-
-    inputTexto.value=obj.nombre??'';
-
-  }else if(tipo==='categoria'){
-
-    titulo.textContent='Editar categoría';
-
-    selectCategoria.style.display='block';
-
-    selectCategoria.value=obj.categoria||'Otros';
-
-  }else if(tipo==='unidad'){
-
-    titulo.textContent='Editar unidad';
-
-    selectUnidad.style.display='block';
-
-    selectUnidad.value=obj.unidad||'unidad';
-  }
-
-  modal.dataset.id=String(obj.id);
-
-  modal.dataset.tipo=tipo;
-
-  modal.classList.add('show');
-
-  setTimeout(()=>{
-
-    if(tipo==='cantidad'||tipo==='precio'){
-
-      input.focus();
-      input.select();
-
-    }else if(tipo==='nombre'){
-
-      inputTexto.focus();
-      inputTexto.select();
-
-    }else if(tipo==='categoria'){
-
-      selectCategoria.focus();
-
-    }else if(tipo==='unidad'){
-
-      selectUnidad.focus();
-    }
-
-  },100);
-}
-
-function cerrarEditor(){
-
-  const modal=document.getElementById('modalEdit');
-
-  modal.classList.remove('show');
-
-  delete modal.dataset.id;
-  delete modal.dataset.tipo;
-}
-
-function guardarEditor(){
-
-  const modal=document.getElementById('modalEdit');
-
-  const id=modal.dataset.id;
-  const tipo=modal.dataset.tipo;
-
-  const obj=hoy.find(
-    x=>String(x.id)===String(id)
-  );
-
-  if(!obj){
-
-    cerrarEditor();
-
-    return;
-  }
-
-  if(tipo==='cantidad'||tipo==='precio'){
-
-    const input=document.getElementById('editValor');
-
-    const valor=parseFloat(input.value);
-
-    if(isNaN(valor)||valor<=0){
-
-      alert(
-        tipo==='cantidad'
-          ?'Ingrese una cantidad válida.'
-          :'Ingrese un precio válido.'
-      );
-
-      input.focus();
-
-      return;
-    }
-
-    if(tipo==='cantidad'){
-
-      obj.cantidad=valor;
-
-      if(
-        obj.unitario!==null &&
-        Number(obj.unitario)>0
-      ){
-
-        obj.valor=
-          Number(obj.unitario)*obj.cantidad;
-      }
-
-    }else{
-
-      obj.unitario=valor;
-
-      obj.valor=
-        valor*(obj.cantidad||1);
-    }
-
-  }else if(tipo==='nombre'){
-
-    const inputTexto=document.getElementById('editTexto');
-
-    const nombre=inputTexto.value.trim();
-
-    if(!nombre){
-
-      alert('Ingrese un nombre válido.');
-
-      inputTexto.focus();
-
-      return;
-    }
-
-    obj.nombre=nombre;
-
-  }else if(tipo==='categoria'){
-
-    const selectCategoria=document.getElementById('editCategoria');
-
-    obj.categoria=selectCategoria.value||'Otros';
-
-  }else if(tipo==='unidad'){
-
-    const selectUnidad=document.getElementById('editUnidad');
-
-    obj.unidad=selectUnidad.value||'unidad';
-  }
-
-  guardarStorage(STORAGE_HOY,hoy);
-
-  cerrarEditor();
-
-  render();
-}
-
-function toggleListo(id){
-
-  const obj=hoy.find(
-    x=>String(x.id)===String(id)
-  );
-
-  if(!obj)return;
-
-  obj.listo=!obj.listo;
-
-  guardarStorage(STORAGE_HOY,hoy);
-
-  render();
-}
-
-/* =========================================================
-   PLANTILLA BASE
-   ========================================================= */
-
-function importarPlantillaBase(){
-
-  if(
-    hoy.length>0 &&
-    !confirm(
-      `¿Agregar plantilla base de ${PLANTILLA_BASE.length} productos en blanco a Hoy?`
-    )
-  ){
-
-    return;
-  }
-
-  const nuevos=PLANTILLA_BASE.map(x=>({
-
-    id:nuevoId(),
-
-    nombre:x.nombre,
-
-    cantidad:x.cantidad,
-
-    unidad:x.unidad,
-
-    categoria:x.categoria||'Otros',
-
-    valor:null,
-
-    unitario:null,
-
-    listo:false
-  }));
-
-  hoy=[...hoy,...nuevos];
-
-  guardarStorage(STORAGE_HOY,hoy);
-
-  render();
-}
-
-/* =========================================================
-   IMPORTAR LISTA
-   ========================================================= */
-
-function openImportModal(){
-
-  document.getElementById('modalImport')
-    .classList.add('show');
-
-  setTimeout(()=>{
-
-    document.getElementById('txtImport').focus();
-
-  },100);
-}
-
-function closeImportModal(){
-
-  document.getElementById('modalImport')
-    .classList.remove('show');
-}
-
-function importarDesdeTexto(){
-
-  const txt=
-    document.getElementById('txtImport').value.trim();
-
-  if(!txt){
-
-    alert('Pega una lista');
-
-    return;
-  }
-
-  const categoriaSeleccionada=
-    document.getElementById('cat').value||'Otros';
-
-  const lineas=
-    txt.split(/\r?\n/)
-       .filter(l=>l.trim());
-
-  const nuevos=[];
-
-  lineas.forEach(l=>{
-
-    const partes=l.trim().split(/\s+/);
-
-    let unidad=
-      partes[partes.length-1].toLowerCase();
-
-    const unidadesValidas=[
-      'kg',
-      'lb',
-      'g',
-      'unidad',
-      'unidades',
-      'paca',
-      'pacas',
-      'ml',
-      'l',
-      'litro',
-      'litros',
-      'caja',
-      'cajas',
-      'docena',
-      'docenas',
-      'bulto',
-      'bultos'
-    ];
-
-    let cant=1;
-
-    let nombre=l.trim();
-
-    if(unidadesValidas.includes(unidad)){
-
-      const cantPosible=
-        parseFloat(partes[partes.length-2]);
-
-      if(!isNaN(cantPosible)){
-
-        cant=cantPosible;
-
-        nombre=
-          partes.slice(0,-2).join(' ');
-
-      }else{
-
-        nombre=
-          partes.slice(0,-1).join(' ');
-      }
-
-      if(unidad==='unidades')
-        unidad='unidad';
-
-      if(unidad==='pacas')
-        unidad='paca';
-
-      if(unidad==='litro'||unidad==='litros')
-        unidad='l';
-
-      if(unidad==='cajas')
-        unidad='caja';
-
-      if(unidad==='docenas')
-        unidad='docena';
-
-      if(unidad==='bultos')
-        unidad='bulto';
-
-    }else{
-
-      unidad='unidad';
-
-      const ultimo=
-        parseFloat(partes[partes.length-1]);
-
-      if(!isNaN(ultimo)){
-
-        cant=ultimo;
-
-        nombre=
-          partes.slice(0,-1).join(' ');
-      }
-    }
-
-    nombre=
-      nombre
-        .replace(/^[•\-\*]\s*/,'')
-        .trim();
-
-    if(nombre){
-
-      nuevos.push({
-
-        id:nuevoId(),
-
-        nombre:nombre,
-
-        cantidad:cant,
-
-        unidad:unidad,
-
-        categoria:categoriaSeleccionada,
-
-        valor:null,
-
-        unitario:null,
-
-        listo:false
-      });
-    }
-  });
-
-  if(!nuevos.length){
-
-    alert('No se entendió la lista');
-
-    return;
-  }
-
-  hoy=[...hoy,...nuevos];
-
-  guardarStorage(STORAGE_HOY,hoy);
-
-  closeImportModal();
-
-  document.getElementById('txtImport').value='';
-
-  render();
-}
-
-/* =========================================================
-   BORRADO
-   ========================================================= */
-
-function eliminarProducto(id){
-
-  if(!confirm('¿Eliminar este producto?'))return;
-
-  hoy=hoy.filter(
-    x=>String(x.id)!==String(id)
-  );
-
-  guardarStorage(STORAGE_HOY,hoy);
-
-  render();
-}
-
-function eliminarHistorial(index){
-
-  if(!confirm('¿Borrar este mercado guardado?'))return;
-
-  hist.splice(index,1);
-
-  guardarStorage(STORAGE_HIST,hist);
-
-  render();
-}
-
-function clearToday(){
-
-  if(
-    hoy.length &&
-    confirm('¿Borrar todos los productos de Hoy?')
-  ){
-
-    hoy=[];
-
-    guardarStorage(STORAGE_HOY,hoy);
-
-    render();
-  }
-}
-
-/* =========================================================
-   TABS
-   ========================================================= */
-
-function showTab(t){
-
-  document.getElementById('v-hoy').style.display=
-    t==='hoy'?'block':'none';
-
-  document.getElementById('v-guard').style.display=
-    t==='guard'?'block':'none';
-
-  document.getElementById('t-hoy')
-    .classList.toggle('active',t==='hoy');
-
-  document.getElementById('t-guard')
-    .classList.toggle('active',t==='guard');
-
-  render();
-}
-
-/* =========================================================
-   EXPORTAR
-   ========================================================= */
-
-function exportarDatos(){
-
-  const datos={
-
-    app:'Lista de Mercado',
-
-    version:18,
-
-    fecha:new Date().toISOString(),
-
-    hoy:hoy,
-
-    hist:hist
-  };
-
-  const blob=new Blob(
-    [JSON.stringify(datos,null,2)],
-    {type:'application/json;charset=utf-8'}
-  );
-
-  const url=URL.createObjectURL(blob);
-
-  const a=document.createElement('a');
-
-  a.href=url;
-
-  a.download='lista_mercado_backup.json';
-
-  document.body.appendChild(a);
-
-  a.click();
-
-  a.remove();
-
-  setTimeout(
-    ()=>URL.revokeObjectURL(url),
-    1000
-  );
-}
-
-/* =========================================================
-   IMPORTAR DATOS
-   ========================================================= */
-
-function importarDatosArchivo(input){
-
-  const file=
-    input.files&&input.files[0];
-
-  if(!file)return;
-
-  const reader=new FileReader();
-
-  reader.onload=function(e){
-
-    try{
-
-      const datos=
-        JSON.parse(e.target.result);
-
-      if(
-        !datos ||
-        !Array.isArray(datos.hoy) ||
-        !Array.isArray(datos.hist)
-      ){
-
-        throw new Error('Formato inválido');
-      }
-
-      if(
-        !confirm(
-          '¿Reemplazar los datos actuales con el respaldo seleccionado?'
-        )
-      ){
-
-        input.value='';
-
-        return;
-      }
-
-      hoy=datos.hoy.map(x=>({
-
-        ...x,
-
-        categoria:x.categoria||'Otros',
-
-        valor:
-          x.unitario>0 && x.cantidad>0
-            ?Number(x.unitario)*Number(x.cantidad)
-            :null
-      }));
-
-      hist=datos.hist.map(h=>({
-
-        ...h,
-
-        items:(h.items||[]).map(x=>({
-
-          ...x,
-
-          categoria:x.categoria||'Otros',
-
-          valor:
-            x.unitario>0 && x.cantidad>0
-              ?Number(x.unitario)*Number(x.cantidad)
-              :null
-        }))
-      }));
-
-      guardarStorage(
-        STORAGE_HOY,
-        hoy
-      );
-
-      guardarStorage(
-        STORAGE_HIST,
-        hist
-      );
-
-      render();
-
-      alert('Datos importados correctamente.');
-
-    }catch(err){
-
-      console.error(err);
-
-      alert(
-        'El archivo seleccionado no es un respaldo válido de Lista de Mercado.'
-      );
-    }
-
-    input.value='';
-  };
-
-  reader.onerror=function(){
-
-    alert('No fue posible leer el archivo.');
-
-    input.value='';
-  };
-
-  reader.readAsText(file,'UTF-8');
-}
-
-/* =========================================================
-   CATEGORIAS
-   ========================================================= */
-
-function renderCategoryTabs(){
-
-  const box=
-    document.getElementById('categoryTabs');
-
-  if(!box)return;
-
-  box.innerHTML=
-    CATEGORIAS.map(cat=>{
-
-      const cantidad=
-        cat.id==='Todas'
-          ?hoy.length
-          :hoy.filter(
-            x=>(x.categoria||'Otros')===cat.id
-          ).length;
-
-      return `
-        <button
-          class="category-tab ${categoriaActiva===cat.id?'active':''}"
-          onclick="seleccionarCategoria('${escapeHtml(cat.id)}')">
-
-          <span>${cat.icono}</span>
-
-          <span>${escapeHtml(cat.nombre)}</span>
-
-          <small>${cantidad}</small>
-
-        </button>
-      `;
-
-    }).join('');
-}
-
-function seleccionarCategoria(cat){
-
-  categoriaActiva=cat;
-
-  if(cat!=='Todas'){
-
-    document.getElementById('cat').value=cat;
-  }
-
-  render();
-}
-
-/* =========================================================
-   RENDER PRINCIPAL
-   ========================================================= */
-
-function render(){
-
-  renderCategoryTabs();
-
-  /*
-     TOTAL GENERAL:
-     suma todas las categorías.
-     Los productos sin precio aportan 0.
-  */
-
-  const tot=hoy.reduce(
-    (s,it)=>s+(Number(it.valor)||0),
-    0
-  );
-
-  const productosVisibles=
-    categoriaActiva==='Todas'
-      ?hoy
-      :hoy.filter(
-        it=>(it.categoria||'Otros')===categoriaActiva
-      );
-
-  const lh=
-    document.getElementById('lh');
-
-  let listosVisibles=0;
-
-  /*
-     Ahorro/comparaciones solamente para productos
-     que tienen precio.
-  */
-
-  let ahorroTotal=0;
-  let productosComparados=0;
-
-  if(productosVisibles.length){
-
-    lh.innerHTML=
-      productosVisibles.map(it=>{
-
-        if(it.listo)
-          listosVisibles++;
-
-        const res=
-          getLastPrice(it.nombre);
-
-        let comp='';
-
-        if(
-          res &&
-          Number(it.unitario)>0
-        ){
-
-          const d=
-            Number(it.unitario)-
-            Number(res.unitario);
-
-          ahorroTotal+=
-            (
-              Number(res.unitario)-
-              Number(it.unitario)
-            )*
-            (Number(it.cantidad)||1);
-
-          productosComparados++;
-
-          if(d===0){
-
-            comp=
-              ` <span class="badge-same">✅ Igual</span>`;
-
-          }else if(d>0){
-
-            comp=
-              ` <span class="badge-up">🔺 +$${Math.round(d).toLocaleString('es-CO')}</span>`;
-
-          }else{
-
-            comp=
-              ` <span class="badge-down">🔻 -$${Math.abs(Math.round(d)).toLocaleString('es-CO')}</span>`;
-          }
-        }
-
-        /*
-           Precio presente
-        */
-
-        const tienePrecio=
-          Number(it.unitario)>0;
-
-        const unitTxt=
-          tienePrecio
-            ?`$${Math.round(it.unitario).toLocaleString('es-CO')}/${escapeHtml(it.unidad)}`
-            :'';
-
-        let valTxt='';
-
-        if(tienePrecio){
-
-          valTxt=
-            `<b>$${Math.round(it.valor).toLocaleString('es-CO')} total</b>
-             <small>(${unitTxt} × ${it.cantidad})</small>`;
-
-        }else{
-
-          valTxt=
-            `<span style="color:#ef4444;font-weight:700">
-              Falta precio
-            </span>`;
-        }
-
-        return `
-
-          <div class="item ${it.listo?'listo':''}">
-
-            <div style="display:flex;align-items:center;min-width:0">
-
-              <div
-                class="check ${it.listo?'done':''}"
-                role="button"
-                tabindex="0"
-                aria-label="Marcar ${escapeHtml(it.nombre)}"
-                onclick="toggleListo('${String(it.id)}')">
-
-                ${it.listo?'✓':''}
-
-              </div>
-
-              <div style="min-width:0;overflow:hidden">
-
-                <b style="overflow-wrap:anywhere;cursor:pointer"
-                   role="button"
-                   tabindex="0"
-                   aria-label="Editar nombre"
-                   onclick="editarNombre('${String(it.id)}')">
-                  ${escapeHtml(it.nombre)}
-                  <small style="opacity:.45;font-weight:400">✏️</small>
-                </b>
-
-                <span class="cat-mini"
-                      style="cursor:pointer"
-                      role="button"
-                      tabindex="0"
-                      aria-label="Editar categoría"
-                      onclick="editarCategoria('${String(it.id)}')">
-                  ${escapeHtml(it.categoria||'Otros')} ✏️
-                </span>
-
-                ${comp}
-
-                <br>
-
-                <small>
-                  ${it.cantidad}
-                  <span style="cursor:pointer;text-decoration:underline dotted"
-                        role="button"
-                        tabindex="0"
-                        aria-label="Editar unidad"
-                        onclick="editarUnidad('${String(it.id)}')">
-                    ${escapeHtml(it.unidad)} ✏️
-                  </span>
-                  -
-                  ${valTxt}
-                </small>
-
-              </div>
-
-            </div>
-
-            <div style="display:flex;flex-shrink:0;align-items:center">
-
-              <button
-                class="edit-btn"
-                onclick="editarCantidad('${String(it.id)}')"
-                aria-label="Editar cantidad">
-
-                #️⃣
-
-              </button>
-
-              <button
-                class="edit-btn"
-                onclick="editarPrecio('${String(it.id)}')"
-                aria-label="${tienePrecio?'Editar precio':'Agregar precio'}">
-
-                ${tienePrecio?'✏️':'💲'}
-
-              </button>
-
-              <button
-                onclick="eliminarProducto('${String(it.id)}')"
-                style="border:none;background:none;color:#ef4444;font-size:24px;margin-left:5px;padding:4px"
-                aria-label="Eliminar">
-
-                ×
-
-              </button>
-
-            </div>
-
-          </div>
-        `;
-
-      }).join('');
-
-  }else{
-
-    lh.innerHTML=
-      `<center style="color:#aaa;padding:18px">
-        Canasta vacía<br>
-        <small>
-          Usa 📥 Plantilla Vacía para empezar rápido
-        </small>
-      </center>`;
-  }
-
-  /* =======================================================
-     RESUMEN DE AHORRO
-     ======================================================= */
-
-  const resDiv=
-    document.getElementById('resumen');
-
-  const statAhorro=
-    document.getElementById('statAhorro');
-
-  if(productosComparados>0){
-
-    resDiv.style.display='block';
-
-    statAhorro.style.display='block';
-
-    if(ahorroTotal>0){
-
-      resDiv.innerHTML=
-        `💰 <b>¡Ahorraste $${Math.round(ahorroTotal).toLocaleString('es-CO')}!</b> vs última vez`;
-
-      resDiv.style.background='#dcfce7';
-
-      resDiv.style.color='#166534';
-
-      document.getElementById('tAhorro').innerText=
-        `💰 +$${Math.round(ahorroTotal).toLocaleString('es-CO')}`;
-
-    }else if(ahorroTotal<0){
-
-      resDiv.innerHTML=
-        `📈 <b>Subió $${Math.abs(Math.round(ahorroTotal)).toLocaleString('es-CO')}</b> vs última vez`;
-
-      resDiv.style.background='#fee2e2';
-
-      resDiv.style.color='#991b1b';
-
-      statAhorro.innerHTML=
-        `<b>📈 -$${Math.abs(Math.round(ahorroTotal)).toLocaleString('es-CO')}</b>`;
-
-    }else{
-
-      resDiv.innerHTML=
-        `✅ <b>Mismo total</b>`;
-
-      statAhorro.style.display='none';
-    }
-
-  }else{
-
-    resDiv.style.display='none';
-
-    statAhorro.style.display='none';
-  }
-
-  /* =======================================================
-     CONTADORES
-     ======================================================= */
-
-  document.getElementById('ch').innerText=
-    productosVisibles.length+' productos';
-
-  document.getElementById('chListo').innerText=
-    listosVisibles>0
-      ?`(${listosVisibles} listos)`
-      :'';
-
-  /*
-     El contador de listos es GLOBAL.
-  */
-
-  const totalListos=
-    hoy.filter(x=>x.listo).length;
-
-  document.getElementById('tListo').innerText=
-    `${totalListos}/${hoy.length}`;
-
-  document.getElementById('tp').innerText=
-    hoy.length;
-
-  document.getElementById('tg').innerText=
-    '$'+Math.round(tot).toLocaleString('es-CO');
-
-  document.getElementById('th').innerText=
-    hist.length;
-
-  /* =======================================================
-     GUARDADOS
-     ======================================================= */
-
-  const lg=
-    document.getElementById('lg');
-
-  if(hist.length){
-
-    lg.innerHTML=
-      hist.map((h,i)=>{
-
-        let itemsHtml='';
-
-        (h.items||[]).forEach(it=>{
-
-          const prev=
-            getPrevPrice(it.nombre,i);
-
-          let badge='';
-
-          if(
-            prev &&
-            Number(it.unitario)>0
-          ){
-
-            const d=
-              Number(it.unitario)-
-              Number(prev.unitario);
-
-            if(d===0){
-
-              badge=
-                ` <span class="badge-same">Igual</span>`;
-
-            }else if(d>0){
-
-              badge=
-                ` <span class="badge-up">
-                  🔺 +$${Math.round(d).toLocaleString('es-CO')}
-                </span>`;
-
-            }else{
-
-              badge=
-                ` <span class="badge-down">
-                  🔻 -$${Math.abs(Math.round(d)).toLocaleString('es-CO')}
-                </span>`;
-            }
-          }
-
-          const tienePrecio=
-            Number(it.unitario)>0;
-
-          const unit=
-            tienePrecio
-              ?`($${Math.round(it.unitario).toLocaleString('es-CO')}/${escapeHtml(it.unidad)} × ${it.cantidad})`
-              :'';
-
-          const valorGuardado=
-            tienePrecio
-              ?`<b>$${Math.round(it.valor).toLocaleString('es-CO')}</b>
-                <small>${unit}</small>`
-              :`<span style="color:#ef4444;font-weight:700">
-                  Sin precio
-                </span>`;
-
-          itemsHtml+=`
-
-            <div
-              style="display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px dashed #f3f4f6">
-
-              <span style="overflow-wrap:anywhere">
-
-                • ${escapeHtml(it.nombre)}
-
-                (${it.cantidad}
-                ${escapeHtml(it.unidad)})
-
-                <small class="cat-mini">
-                  ${escapeHtml(it.categoria||'Otros')}
-                </small>
-
-              </span>
-
-              <span
-                style="text-align:right;white-space:nowrap">
-
-                ${valorGuardado}
-
-                ${badge}
-
-              </span>
-
-            </div>
-          `;
-        });
-
-        let resumenGuard='';
-
-        if(i<hist.length-1){
-
-          const totalAnterior=
-            Number(hist[i+1].total)||0;
-
-          const diffTotal=
-            (Number(h.total)||0)-
-            totalAnterior;
-
-          if(diffTotal===0){
-
-            resumenGuard=
-              `<div
-                class="resumen-guard"
-                style="background:#e0f2fe;color:#075985">
-
-                ✅ Mismo total que anterior
-                ($${Math.round(totalAnterior).toLocaleString('es-CO')})
-
-              </div>`;
-
-          }else if(diffTotal>0){
-
-            resumenGuard=
-              `<div
-                class="resumen-guard"
-                style="background:#fee2e2;color:#991b1b">
-
-                📈 Subió
-                <b>$${Math.round(diffTotal).toLocaleString('es-CO')}</b>
-                vs anterior
-
-                • Anterior:
-                $${Math.round(totalAnterior).toLocaleString('es-CO')}
-
-                → Actual:
-                $${Math.round(h.total).toLocaleString('es-CO')}
-
-              </div>`;
-
-          }else{
-
-            resumenGuard=
-              `<div
-                class="resumen-guard"
-                style="background:#dcfce7;color:#166534">
-
-                💰 Bajó
-                <b>$${Math.abs(Math.round(diffTotal)).toLocaleString('es-CO')}</b>
-                vs anterior
-
-                • Anterior:
-                $${Math.round(totalAnterior).toLocaleString('es-CO')}
-
-                → Actual:
-                $${Math.round(h.total).toLocaleString('es-CO')}
-
-              </div>`;
-          }
-
-        }else{
-
-          resumenGuard=
-            `<div
-              class="resumen-guard"
-              style="background:#f3f4f6;color:#6b7280">
-
-              🆕 Primera compra
-
-            </div>`;
-        }
-
-        return `
-
-          <div
-            style="border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin-top:12px">
-
-            <div
-              style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">
-
-              <div>
-
-                <b>${escapeHtml(h.fecha||'')}</b>
-
-                <br>
-
-                <small>
-
-                  <b>
-                    ${(h.items||[]).length}
-                    prod • Total:
-                    $${Math.round(h.total||0).toLocaleString('es-CO')}
-                  </b>
-
-                </small>
-
-              </div>
-
-              <div
-                style="display:flex;gap:6px;flex-shrink:0">
-
-                <button
-                  onclick="cargarPlantilla(${i})"
-                  style="background:#22c55e;color:white;border:none;border-radius:8px;padding:8px 10px;font-weight:700">
-
-                  📋 Plantilla
-
-                </button>
-
-                <button
-                  onclick="eliminarHistorial(${i})"
-                  style="background:#fee2e2;border:none;border-radius:8px;padding:8px 10px">
-
-                  🗑️
-
-                </button>
-
-              </div>
-
-            </div>
-
-            ${resumenGuard}
-
-            <div
-              style="margin-top:10px;overflow-x:auto">
-
-              ${itemsHtml}
-
-            </div>
-
-          </div>
-        `;
-
-      }).join('');
-
-  }else{
-
-    lg.innerHTML=
-      `<center style="color:#aaa;padding:18px">
-        Sin guardados
-      </center>`;
-  }
-}
-
-/* =========================================================
-   SEGURIDAD HTML
-   ========================================================= */
 
 function escapeHtml(value){
-
   return String(value??'')
     .replace(/&/g,'&amp;')
     .replace(/</g,'&lt;')
@@ -2380,147 +459,1085 @@ function escapeHtml(value){
 }
 
 /* =========================================================
+   LIMPIEZA DE DATOS (al cargar y al importar)
+   ========================================================= */
+
+function limpiarItem(x){
+  x=x||{};
+  const cantidad=Number(x.cantidad)>0?Number(x.cantidad):1;
+  const unitario=Number(x.unitario)>0?Number(x.unitario):null;
+
+  return {
+    id:idSeguro(x.id),
+    nombre:String(x.nombre||'').trim().slice(0,80)||'Producto',
+    cantidad,
+    unidad:UNIDADES.some(u=>u.id===x.unidad)?x.unidad:'unidad',
+    categoria:CATEGORIAS.some(c=>c.id===x.categoria&&c.id!=='Todas')?x.categoria:'Otros',
+    unitario,
+    valor:unitario?unitario*cantidad:null,
+    listo:!!x.listo
+  };
+}
+
+function limpiarMercado(h){
+  h=h||{};
+  const items=(Array.isArray(h.items)?h.items:[]).map(limpiarItem);
+  const fechaISO=
+    typeof h.fechaISO==='string'&&!isNaN(Date.parse(h.fechaISO))
+      ?h.fechaISO
+      :null;
+
+  return {
+    id:idSeguro(h.id),
+    fechaISO,
+    fecha:String(h.fecha||'').slice(0,60),
+    total:items.reduce((a,b)=>a+(b.valor||0),0),
+    items
+  };
+}
+
+function idsUnicos(arr){
+  const vistos=new Set();
+  arr.forEach(x=>{
+    if(vistos.has(x.id))x.id=nuevoId();
+    vistos.add(x.id);
+  });
+  return arr;
+}
+
+/* =========================================================
+   ALMACENAMIENTO
+   ========================================================= */
+
+function cargarStorage(clave,defecto){
+  try{
+    const raw=localStorage.getItem(clave);
+    if(!raw)return defecto;
+    const data=JSON.parse(raw);
+    return Array.isArray(data)?data:defecto;
+  }catch(e){
+    console.warn('No se pudo leer almacenamiento:',e);
+    return defecto;
+  }
+}
+
+function guardarStorage(clave,valor){
+  try{
+    localStorage.setItem(clave,JSON.stringify(valor));
+    return true;
+  }catch(e){
+    alert('El navegador no permite guardar los datos localmente. Verifique el modo privado/incógnito o los permisos de almacenamiento.');
+    console.error(e);
+    return false;
+  }
+}
+
+function guardarHoy(){return guardarStorage(STORAGE_HOY,hoy)}
+function guardarHist(){return guardarStorage(STORAGE_HIST,hist)}
+
+let hoy=idsUnicos(cargarStorage(STORAGE_HOY,[]).map(limpiarItem));
+let hist=idsUnicos(cargarStorage(STORAGE_HIST,[]).map(limpiarMercado));
+let categoriaActiva='Todas';
+
+/* Pide al navegador que no borre los datos por falta de espacio */
+if(navigator.storage&&navigator.storage.persist){
+  navigator.storage.persist().catch(()=>{});
+}
+
+/* =========================================================
+   HISTORIAL DE PRECIOS (mismo nombre Y misma unidad)
+   ========================================================= */
+
+function buscarPrecio(nombre,unidad,desde){
+  const n=norm(nombre);
+  if(!n)return null;
+  for(let j=desde;j<hist.length;j++){
+    for(const it of hist[j].items){
+      if(norm(it.nombre)===n&&it.unidad===unidad&&Number(it.unitario)>0)return it;
+    }
+  }
+  return null;
+}
+
+function buscarPrecioCualquiera(nombre){
+  const n=norm(nombre);
+  if(!n)return null;
+  for(const h of hist){
+    for(const it of h.items){
+      if(norm(it.nombre)===n&&Number(it.unitario)>0)return it;
+    }
+  }
+  return null;
+}
+
+function categoriaSugerida(nombre){
+  const n=norm(nombre);
+  for(const h of hist){
+    const it=h.items.find(x=>norm(x.nombre)===n);
+    if(it)return it.categoria;
+  }
+  const p=PLANTILLA_BASE.find(x=>norm(x.nombre)===n);
+  return p?p.categoria:null;
+}
+
+function badgeDiff(d){
+  d=Math.round(d);
+  if(d===0)return ` <span class="badge-same">✅ Igual</span>`;
+  if(d>0)return ` <span class="badge-up">🔺 +${fmt$(d)}</span>`;
+  return ` <span class="badge-down">🔻 -${fmt$(Math.abs(d))}</span>`;
+}
+
+/* =========================================================
+   FORMULARIO: CÁLCULO Y PISTAS
+   ========================================================= */
+
+function calcUnitario(){
+  const c=parseNum($('cant').value,false);
+  const v=parseNum($('val').value,true);
+  const u=$('uni').value;
+  const uNom=nombreUnidad(u);
+  const div=$('calcUnit');
+
+  $('val').placeholder=`Precio por ${uNom} (opcional)`;
+
+  if(!(c>0)||!(v>0)){
+    div.classList.remove('show');
+    return;
+  }
+
+  div.innerHTML=
+    `💲 <b>${fmt$(v)} por ${escapeHtml(uNom)}</b> × ${fmtN(c)} ${escapeHtml(uNom)} = `+
+    `<b>${fmt$(v*c)} total</b>`;
+  div.classList.add('show');
+}
+
+const ESTILOS_HINT={
+  verde:['#f0fdf4','#166534','#bbf7d0'],
+  amarillo:['#fef3c7','#92400e','#fcd34d'],
+  azul:['#e0f2fe','#075985','#7dd3fc'],
+  rojo:['#fee2e2','#991b1b','#fca5a5'],
+  verdeFuerte:['#dcfce7','#166534','#86efac']
+};
+
+function mostrarHint(html,estilo){
+  const hint=$('hint');
+  const [bg,color,borde]=ESTILOS_HINT[estilo];
+  hint.innerHTML=html;
+  hint.style.background=bg;
+  hint.style.color=color;
+  hint.style.border='1px solid '+borde;
+  hint.classList.add('show');
+}
+
+function checkHist(){
+  const n=$('nom').value.trim();
+  const u=$('uni').value;
+  const v=parseNum($('val').value,true);
+  const hint=$('hint');
+
+  if(!n){
+    hint.classList.remove('show');
+    return;
+  }
+
+  const res=buscarPrecio(n,u,0);
+
+  if(!res){
+    const otra=buscarPrecioCualquiera(n);
+    if(otra){
+      mostrarHint(
+        `📋 Última vez: <b>${fmt$(otra.unitario)} por ${escapeHtml(nombreUnidad(otra.unidad))}</b> `+
+        `(otra unidad, no se compara)`,
+        'amarillo'
+      );
+    }else if(n.length>2){
+      mostrarHint(`🆕 Primera vez <b>${escapeHtml(n)}</b>`,'verde');
+    }else{
+      hint.classList.remove('show');
+    }
+    return;
+  }
+
+  const last=Number(res.unitario);
+  const uNom=escapeHtml(nombreUnidad(u));
+
+  if(!(v>0)){
+    mostrarHint(`📋 Última vez: <b>${fmt$(last)} por ${uNom}</b>`,'amarillo');
+    return;
+  }
+
+  const diff=v-last;
+  const perc=((diff/last)*100).toFixed(1);
+
+  if(Math.abs(diff)<0.5){
+    mostrarHint(`✅ <b>Mismo precio</b>`,'azul');
+  }else if(diff>0){
+    mostrarHint(`🔺 <b>Subió ${fmt$(diff)}</b> (+${perc}%)`,'rojo');
+  }else{
+    mostrarHint(`🔻 <b>Bajó ${fmt$(Math.abs(diff))}</b> (${perc}%)`,'verdeFuerte');
+  }
+}
+
+/* =========================================================
+   AVISO CON "DESHACER"
+   ========================================================= */
+
+let toastTimer=null;
+
+function mostrarToast(texto,accion){
+  $('toastTxt').textContent=texto;
+  const b=$('toastBtn');
+  b.style.display=accion?'':'none';
+  b.onclick=accion||null;
+  $('toast').classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(ocultarToast,5000);
+}
+
+function ocultarToast(){
+  $('toast').classList.remove('show');
+}
+
+/* =========================================================
+   AGREGAR PRODUCTO (precio opcional)
+   ========================================================= */
+
+function add(){
+  const n=$('nom').value.trim();
+
+  if(!n){
+    alert('Ingrese producto');
+    $('nom').focus();
+    return;
+  }
+
+  let c=parseNum($('cant').value,false);
+  if(!(c>0))c=1;
+
+  const u=$('uni').value;
+  const v=parseNum($('val').value,true);
+  const unitario=v>0?v:null;
+
+  const existente=hoy.find(x=>norm(x.nombre)===norm(n)&&x.unidad===u);
+
+  if(
+    existente&&
+    confirm(`"${existente.nombre}" ya está en la lista (${fmtN(existente.cantidad)} ${nombreUnidad(u)}). ¿Sumar la cantidad?`)
+  ){
+    existente.cantidad=redondear(existente.cantidad+c);
+    if(unitario)existente.unitario=unitario;
+    existente.valor=existente.unitario?existente.unitario*existente.cantidad:null;
+  }else{
+    hoy.push(limpiarItem({
+      id:nuevoId(),
+      nombre:n,
+      cantidad:c,
+      unidad:u,
+      categoria:$('cat').value,
+      unitario
+    }));
+  }
+
+  if(!guardarHoy())return;
+
+  $('nom').value='';
+  $('cant').value='';
+  $('val').value='';
+  $('cat').value=categoriaActiva!=='Todas'?categoriaActiva:'Granos y abarrotes';
+  $('hint').classList.remove('show');
+  $('calcUnit').classList.remove('show');
+
+  render();
+  $('nom').focus();
+}
+
+/* =========================================================
+   GUARDAR MERCADO
+   ========================================================= */
+
+function saveM(){
+  if(!hoy.length){
+    alert('Nada hoy');
+    return;
+  }
+
+  const sinPrecio=hoy.filter(x=>!(x.unitario>0)).length;
+  if(
+    sinPrecio>0&&
+    !confirm(`Hay ${sinPrecio} producto(s) sin precio. ¿Guardar de todas formas?`)
+  )return;
+
+  const ahora=new Date();
+  const items=JSON.parse(JSON.stringify(hoy)).map(limpiarItem);
+
+  hist.unshift({
+    id:nuevoId(),
+    fechaISO:ahora.toISOString(),
+    fecha:ahora.toLocaleString('es-CO'),
+    total:items.reduce((a,b)=>a+(b.valor||0),0),
+    items
+  });
+
+  if(!guardarHist())return;
+
+  hoy=[];
+  if(!guardarHoy())return;
+
+  mostrarToast('Mercado guardado ✅');
+  showTab('guard');
+}
+
+function fechaTexto(h){
+  if(h.fechaISO){
+    return new Date(h.fechaISO).toLocaleString('es-CO',{
+      day:'2-digit',month:'short',year:'numeric',
+      hour:'2-digit',minute:'2-digit'
+    });
+  }
+  return h.fecha||'';
+}
+
+/* =========================================================
+   CARGAR PLANTILLA DESDE HISTORIAL
+   ========================================================= */
+
+function cargarPlantilla(index){
+  if(!hist[index])return;
+
+  if(hoy.length>0&&!confirm('¿Agregar esta plantilla a Hoy?'))return;
+
+  const plantilla=hist[index].items.map(x=>limpiarItem({
+    ...x,
+    id:nuevoId(),
+    unitario:null,
+    listo:false
+  }));
+
+  hoy=[...hoy,...plantilla];
+  guardarHoy();
+  showTab('hoy');
+}
+
+/* =========================================================
+   EDITAR
+   ========================================================= */
+
+function buscarEnHoy(id){
+  return hoy.find(x=>x.id===String(id));
+}
+
+function editarCantidad(id){const o=buscarEnHoy(id);if(o)abrirEditor('cantidad',o)}
+function editarPrecio(id){const o=buscarEnHoy(id);if(o)abrirEditor('precio',o)}
+function editarNombre(id){const o=buscarEnHoy(id);if(o)abrirEditor('nombre',o)}
+function editarCategoria(id){const o=buscarEnHoy(id);if(o)abrirEditor('categoria',o)}
+function editarUnidad(id){const o=buscarEnHoy(id);if(o)abrirEditor('unidad',o)}
+
+function poblarSelectUnidad(){
+  $('editUnidad').innerHTML=UNIDADES
+    .map(u=>`<option value="${escapeHtml(u.id)}">${escapeHtml(u.nombre)}</option>`)
+    .join('');
+}
+
+function poblarSelectCategoria(){
+  $('editCategoria').innerHTML=CATEGORIAS
+    .filter(c=>c.id!=='Todas')
+    .map(c=>`<option value="${escapeHtml(c.id)}">${c.icono} ${escapeHtml(c.nombre)}</option>`)
+    .join('');
+}
+
+function abrirEditor(tipo,obj){
+  const modal=$('modalEdit');
+  const titulo=$('editTitulo');
+  const input=$('editValor');
+  const inputTexto=$('editTexto');
+  const selCat=$('editCategoria');
+  const selUni=$('editUnidad');
+
+  input.style.display='none';
+  inputTexto.style.display='none';
+  selCat.style.display='none';
+  selUni.style.display='none';
+
+  if(tipo==='cantidad'){
+    titulo.textContent='Editar cantidad';
+    input.style.display='block';
+    input.value=obj.cantidad??'';
+  }else if(tipo==='precio'){
+    titulo.textContent=(obj.unitario?'Editar':'Agregar')+' precio por '+nombreUnidad(obj.unidad);
+    input.style.display='block';
+    input.value=obj.unitario??'';
+  }else if(tipo==='nombre'){
+    titulo.textContent='Editar nombre del producto';
+    inputTexto.style.display='block';
+    inputTexto.value=obj.nombre??'';
+  }else if(tipo==='categoria'){
+    titulo.textContent='Editar categoría';
+    selCat.style.display='block';
+    selCat.value=obj.categoria||'Otros';
+  }else if(tipo==='unidad'){
+    titulo.textContent='Editar unidad';
+    selUni.style.display='block';
+    selUni.value=obj.unidad||'unidad';
+  }
+
+  modal.dataset.id=obj.id;
+  modal.dataset.tipo=tipo;
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden','false');
+
+  setTimeout(()=>{
+    if(tipo==='cantidad'||tipo==='precio'){input.focus();input.select()}
+    else if(tipo==='nombre'){inputTexto.focus();inputTexto.select()}
+    else if(tipo==='categoria')selCat.focus();
+    else if(tipo==='unidad')selUni.focus();
+  },100);
+}
+
+function cerrarEditor(){
+  const modal=$('modalEdit');
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden','true');
+  delete modal.dataset.id;
+  delete modal.dataset.tipo;
+}
+
+function guardarEditor(){
+  const modal=$('modalEdit');
+  const tipo=modal.dataset.tipo;
+  const obj=buscarEnHoy(modal.dataset.id);
+
+  if(!obj){
+    cerrarEditor();
+    return;
+  }
+
+  if(tipo==='cantidad'||tipo==='precio'){
+    const input=$('editValor');
+    const valor=parseNum(input.value,tipo==='precio');
+
+    if(!(valor>0)){
+      alert(tipo==='cantidad'?'Ingrese una cantidad válida.':'Ingrese un precio válido.');
+      input.focus();
+      return;
+    }
+
+    if(tipo==='cantidad')obj.cantidad=redondear(valor);
+    else obj.unitario=valor;
+
+    obj.valor=obj.unitario>0?obj.unitario*obj.cantidad:null;
+
+  }else if(tipo==='nombre'){
+    const nombre=$('editTexto').value.trim().slice(0,80);
+    if(!nombre){
+      alert('Ingrese un nombre válido.');
+      $('editTexto').focus();
+      return;
+    }
+    obj.nombre=nombre;
+
+  }else if(tipo==='categoria'){
+    obj.categoria=$('editCategoria').value||'Otros';
+
+  }else if(tipo==='unidad'){
+    obj.unidad=$('editUnidad').value||'unidad';
+  }
+
+  guardarHoy();
+  cerrarEditor();
+  render();
+}
+
+function toggleListo(id){
+  const obj=buscarEnHoy(id);
+  if(!obj)return;
+  obj.listo=!obj.listo;
+  guardarHoy();
+  render();
+}
+
+/* =========================================================
+   PLANTILLA BASE
+   ========================================================= */
+
+function importarPlantillaBase(){
+  if(
+    hoy.length>0&&
+    !confirm(`¿Agregar plantilla base de ${PLANTILLA_BASE.length} productos en blanco a Hoy?`)
+  )return;
+
+  hoy=[...hoy,...PLANTILLA_BASE.map(x=>limpiarItem({...x,id:nuevoId()}))];
+  guardarHoy();
+  render();
+}
+
+/* =========================================================
+   PEGAR LISTA
+   ========================================================= */
+
+function openImportModal(){
+  $('modalImport').classList.add('show');
+  setTimeout(()=>$('txtImport').focus(),100);
+}
+
+function closeImportModal(){
+  $('modalImport').classList.remove('show');
+}
+
+function parsearLinea(linea){
+  let s=String(linea||'').trim().replace(/^[•\-\*·]\s*/,'').trim();
+  if(!s)return null;
+
+  // "2kg" -> "2 kg"
+  s=s.replace(/(\d)([a-záéíóúñ]+)\.?$/i,'$1 $2');
+
+  const p=s.split(/\s+/);
+  let fin=p.length;
+  let cantidad=1;
+  let unidad='unidad';
+
+  const ultimo=norm(p[fin-1]).replace(/\.$/,'');
+  if(fin>1&&ALIAS_UNIDAD[ultimo]){
+    unidad=ALIAS_UNIDAD[ultimo];
+    fin--;
+  }
+
+  if(fin>1){
+    const c=parseNum(p[fin-1],false);
+    if(c>0){
+      cantidad=c;
+      fin--;
+    }
+  }
+
+  const nombre=p.slice(0,fin).join(' ').trim();
+  return nombre?{nombre,cantidad,unidad}:null;
+}
+
+function importarDesdeTexto(){
+  const txt=$('txtImport').value.trim();
+
+  if(!txt){
+    alert('Pega una lista');
+    return;
+  }
+
+  const catSeleccionada=$('cat').value||'Otros';
+
+  const nuevos=txt.split(/\r?\n/)
+    .map(parsearLinea)
+    .filter(Boolean)
+    .map(x=>limpiarItem({
+      ...x,
+      id:nuevoId(),
+      categoria:categoriaSugerida(x.nombre)||catSeleccionada
+    }));
+
+  if(!nuevos.length){
+    alert('No se entendió la lista');
+    return;
+  }
+
+  hoy=[...hoy,...nuevos];
+  guardarHoy();
+  closeImportModal();
+  $('txtImport').value='';
+  render();
+  mostrarToast(`${nuevos.length} producto(s) agregados`);
+}
+
+/* =========================================================
+   BORRADO
+   ========================================================= */
+
+function eliminarProducto(id){
+  const idx=hoy.findIndex(x=>x.id===String(id));
+  if(idx<0)return;
+
+  const [obj]=hoy.splice(idx,1);
+  guardarHoy();
+  render();
+
+  mostrarToast(`Eliminado: ${obj.nombre}`,()=>{
+    hoy.splice(Math.min(idx,hoy.length),0,obj);
+    guardarHoy();
+    render();
+    ocultarToast();
+  });
+}
+
+function eliminarHistorial(index){
+  if(!confirm('¿Borrar este mercado guardado?'))return;
+  hist.splice(index,1);
+  guardarHist();
+  render();
+}
+
+function clearToday(){
+  if(!hoy.length)return;
+  if(!confirm('¿Borrar todos los productos de Hoy?'))return;
+
+  const copia=hoy;
+  hoy=[];
+  guardarHoy();
+  render();
+
+  mostrarToast('Lista de Hoy borrada',()=>{
+    hoy=copia;
+    guardarHoy();
+    render();
+    ocultarToast();
+  });
+}
+
+/* =========================================================
+   TABS
+   ========================================================= */
+
+function showTab(t){
+  $('v-hoy').style.display=t==='hoy'?'block':'none';
+  $('v-guard').style.display=t==='guard'?'block':'none';
+  $('t-hoy').classList.toggle('active',t==='hoy');
+  $('t-guard').classList.toggle('active',t==='guard');
+  window.scrollTo(0,0);
+  render();
+}
+
+/* =========================================================
+   EXPORTAR / IMPORTAR RESPALDO
+   ========================================================= */
+
+async function exportarDatos(){
+  const datos={
+    app:'Lista de Mercado',
+    version:APP_VERSION,
+    fecha:new Date().toISOString(),
+    hoy,
+    hist
+  };
+
+  const json=JSON.stringify(datos,null,2);
+  const nombre=`lista_mercado_${new Date().toISOString().slice(0,10)}.json`;
+
+  // En celular: menú de compartir (WhatsApp, Archivos, Drive...)
+  const esMovil=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
+
+  if(esMovil&&navigator.canShare&&typeof File==='function'){
+    try{
+      const file=new File([json],nombre,{type:'application/json'});
+      if(navigator.canShare({files:[file]})){
+        await navigator.share({files:[file],title:'Respaldo Lista de Mercado'});
+        return;
+      }
+    }catch(e){
+      if(e&&e.name==='AbortError')return;
+      console.warn('Compartir falló, se descarga el archivo:',e);
+    }
+  }
+
+  const blob=new Blob([json],{type:'application/json;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=nombre;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function importarDatosArchivo(input){
+  const file=input.files&&input.files[0];
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=function(e){
+    try{
+      const datos=JSON.parse(e.target.result);
+
+      if(!datos||!Array.isArray(datos.hoy)||!Array.isArray(datos.hist)){
+        throw new Error('Formato inválido');
+      }
+
+      if(!confirm('¿Reemplazar los datos actuales con el respaldo seleccionado?')){
+        input.value='';
+        return;
+      }
+
+      hoy=idsUnicos(datos.hoy.map(limpiarItem));
+      hist=idsUnicos(datos.hist.map(limpiarMercado));
+
+      guardarHoy();
+      guardarHist();
+      render();
+
+      alert('Datos importados correctamente.');
+    }catch(err){
+      console.error(err);
+      alert('El archivo seleccionado no es un respaldo válido de Lista de Mercado.');
+    }
+    input.value='';
+  };
+
+  reader.onerror=function(){
+    alert('No fue posible leer el archivo.');
+    input.value='';
+  };
+
+  reader.readAsText(file,'UTF-8');
+}
+
+/* =========================================================
+   CATEGORÍAS
+   ========================================================= */
+
+function renderCategoryTabs(){
+  $('categoryTabs').innerHTML=CATEGORIAS.map(cat=>{
+    const cantidad=cat.id==='Todas'
+      ?hoy.length
+      :hoy.filter(x=>x.categoria===cat.id).length;
+
+    return `
+      <button class="category-tab ${categoriaActiva===cat.id?'active':''}"
+        onclick="seleccionarCategoria('${escapeHtml(cat.id)}')">
+        <span>${cat.icono}</span>
+        <span>${escapeHtml(cat.nombre)}</span>
+        <small>${cantidad}</small>
+      </button>`;
+  }).join('');
+}
+
+function seleccionarCategoria(cat){
+  categoriaActiva=cat;
+  if(cat!=='Todas')$('cat').value=cat;
+  render();
+}
+
+/* =========================================================
+   RENDER: PRODUCTO DE HOY
+   ========================================================= */
+
+function htmlItem(it){
+  const id=escapeHtml(it.id);
+  const tienePrecio=Number(it.unitario)>0;
+  const uNom=escapeHtml(nombreUnidad(it.unidad));
+
+  let comp='';
+  if(tienePrecio){
+    const r=buscarPrecio(it.nombre,it.unidad,0);
+    if(r)comp=badgeDiff(it.unitario-r.unitario);
+  }
+
+  const valTxt=tienePrecio
+    ?`<b>${fmt$(it.valor)} total</b> <small>(${fmt$(it.unitario)}/${uNom} × ${fmtN(it.cantidad)})</small>`
+    :`<span style="color:#ef4444;font-weight:700">Falta precio</span>`;
+
+  return `
+    <div class="item ${it.listo?'listo':''}">
+      <div style="display:flex;align-items:center;min-width:0">
+
+        <div class="check ${it.listo?'done':''}" role="button" tabindex="0"
+          aria-label="Marcar ${escapeHtml(it.nombre)}"
+          onclick="toggleListo('${id}')">${it.listo?'✓':''}</div>
+
+        <div style="min-width:0;overflow:hidden">
+          <b style="overflow-wrap:anywhere;cursor:pointer" role="button" tabindex="0"
+            aria-label="Editar nombre" onclick="editarNombre('${id}')">
+            ${escapeHtml(it.nombre)} <small style="opacity:.45;font-weight:400">✏️</small>
+          </b>
+
+          <span class="cat-mini" style="cursor:pointer" role="button" tabindex="0"
+            aria-label="Editar categoría" onclick="editarCategoria('${id}')">
+            ${escapeHtml(it.categoria)} ✏️
+          </span>
+
+          ${comp}
+          <br>
+
+          <small>
+            ${fmtN(it.cantidad)}
+            <span style="cursor:pointer;text-decoration:underline dotted" role="button" tabindex="0"
+              aria-label="Editar unidad" onclick="editarUnidad('${id}')">${uNom} ✏️</span>
+            - ${valTxt}
+          </small>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-shrink:0;align-items:center">
+        <button class="edit-btn" onclick="editarCantidad('${id}')" aria-label="Editar cantidad">#️⃣</button>
+        <button class="edit-btn" onclick="editarPrecio('${id}')"
+          aria-label="${tienePrecio?'Editar precio':'Agregar precio'}">${tienePrecio?'✏️':'💲'}</button>
+        <button onclick="eliminarProducto('${id}')" aria-label="Eliminar"
+          style="border:none;background:none;color:#ef4444;font-size:24px;margin-left:5px;padding:4px">×</button>
+      </div>
+    </div>`;
+}
+
+/* =========================================================
+   RENDER: MERCADO GUARDADO
+   ========================================================= */
+
+function compararConAnteriores(i){
+  let dif=0;
+  let n=0;
+
+  hist[i].items.forEach(it=>{
+    if(!(it.unitario>0))return;
+    const p=buscarPrecio(it.nombre,it.unidad,i+1);
+    if(!p)return;
+    dif+=(it.unitario-p.unitario)*it.cantidad;
+    n++;
+  });
+
+  return {dif,n};
+}
+
+function htmlMercado(h,i){
+  let itemsHtml='';
+
+  h.items.forEach(it=>{
+    const tienePrecio=it.unitario>0;
+    const uNom=escapeHtml(nombreUnidad(it.unidad));
+
+    let badge='';
+    if(tienePrecio){
+      const prev=buscarPrecio(it.nombre,it.unidad,i+1);
+      if(prev)badge=badgeDiff(it.unitario-prev.unitario);
+    }
+
+    const valor=tienePrecio
+      ?`<b>${fmt$(it.valor)}</b> <small>(${fmt$(it.unitario)}/${uNom} × ${fmtN(it.cantidad)})</small>`
+      :`<span style="color:#ef4444;font-weight:700">Sin precio</span>`;
+
+    itemsHtml+=`
+      <div style="display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px dashed #f3f4f6">
+        <span style="overflow-wrap:anywhere">
+          • ${escapeHtml(it.nombre)} (${fmtN(it.cantidad)} ${uNom})
+          <small class="cat-mini">${escapeHtml(it.categoria)}</small>
+        </span>
+        <span style="text-align:right;white-space:nowrap">${valor}${badge}</span>
+      </div>`;
+  });
+
+  const sinPrecio=h.items.filter(x=>!(x.unitario>0)).length;
+  const avisoSinPrecio=sinPrecio
+    ?`<br><small style="font-weight:600">⚠️ ${sinPrecio} producto(s) sin precio no suman al total</small>`
+    :'';
+
+  let resumenGuard='';
+
+  if(i<hist.length-1){
+    const anterior=hist[i+1];
+    const difGasto=h.total-anterior.total;
+    const {dif,n}=compararConAnteriores(i);
+
+    const lineaGasto=
+      `Gastaste ${fmt$(h.total)} `+
+      `(${difGasto>=0?'+':'-'}${fmt$(Math.abs(difGasto))} vs anterior de ${fmt$(anterior.total)})`;
+
+    let lineaPrecios;
+    let colores;
+
+    if(n===0){
+      lineaPrecios='Sin productos comparables con compras anteriores';
+      colores='background:#f3f4f6;color:#6b7280';
+    }else if(Math.round(dif)===0){
+      lineaPrecios=`✅ Mismos precios en ${n} producto(s) comparables`;
+      colores='background:#e0f2fe;color:#075985';
+    }else if(dif>0){
+      lineaPrecios=`📈 Por precios pagaste <b>${fmt$(dif)} más</b> en ${n} producto(s) comparables`;
+      colores='background:#fee2e2;color:#991b1b';
+    }else{
+      lineaPrecios=`💰 Por precios ahorraste <b>${fmt$(Math.abs(dif))}</b> en ${n} producto(s) comparables`;
+      colores='background:#dcfce7;color:#166534';
+    }
+
+    resumenGuard=
+      `<div class="resumen-guard" style="${colores}">
+        ${lineaPrecios}<br>
+        <small style="font-weight:600">${lineaGasto}</small>
+        ${avisoSinPrecio}
+      </div>`;
+  }else{
+    resumenGuard=
+      `<div class="resumen-guard" style="background:#f3f4f6;color:#6b7280">
+        🆕 Primera compra ${avisoSinPrecio}
+      </div>`;
+  }
+
+  return `
+    <div style="border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin-top:12px">
+      <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">
+        <div>
+          <b>${escapeHtml(fechaTexto(h))}</b><br>
+          <small><b>${h.items.length} prod • Total: ${fmt$(h.total)}</b></small>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0">
+          <button onclick="cargarPlantilla(${i})"
+            style="background:#22c55e;color:white;border:none;border-radius:8px;padding:8px 10px;font-weight:700">
+            📋 Plantilla
+          </button>
+          <button onclick="eliminarHistorial(${i})" aria-label="Borrar mercado"
+            style="background:#fee2e2;border:none;border-radius:8px;padding:8px 10px">🗑️</button>
+        </div>
+      </div>
+      ${resumenGuard}
+      <div style="margin-top:10px;overflow-x:auto">${itemsHtml}</div>
+    </div>`;
+}
+
+/* =========================================================
+   RENDER PRINCIPAL
+   ========================================================= */
+
+function render(){
+  renderCategoryTabs();
+
+  const tot=hoy.reduce((s,it)=>s+(Number(it.valor)||0),0);
+
+  // Pendientes primero, listos al final
+  const visibles=(categoriaActiva==='Todas'
+      ?hoy
+      :hoy.filter(it=>it.categoria===categoriaActiva))
+    .slice()
+    .sort((a,b)=>Number(a.listo)-Number(b.listo));
+
+  const lh=$('lh');
+
+  lh.innerHTML=visibles.length
+    ?visibles.map(htmlItem).join('')
+    :`<center style="color:#aaa;padding:18px">
+        Canasta vacía<br>
+        <small>Usa 📥 Plantilla Vacía para empezar rápido</small>
+      </center>`;
+
+  /* ---- Ahorro: SIEMPRE sobre toda la lista de hoy ---- */
+
+  let ahorroTotal=0;
+  let comparados=0;
+
+  hoy.forEach(it=>{
+    if(!(it.unitario>0))return;
+    const r=buscarPrecio(it.nombre,it.unidad,0);
+    if(!r)return;
+    ahorroTotal+=(r.unitario-it.unitario)*it.cantidad;
+    comparados++;
+  });
+
+  const resDiv=$('resumen');
+  const statAhorro=$('statAhorro');
+  const tAhorro=$('tAhorro');
+  const redondeado=Math.round(ahorroTotal);
+
+  if(comparados>0){
+    resDiv.style.display='block';
+
+    if(redondeado>0){
+      resDiv.innerHTML=`💰 <b>¡Ahorraste ${fmt$(redondeado)}!</b> en ${comparados} producto(s) vs última compra`;
+      resDiv.style.background='#dcfce7';
+      resDiv.style.color='#166534';
+      tAhorro.textContent=`💰 +${fmt$(redondeado)}`;
+      statAhorro.style.display='block';
+    }else if(redondeado<0){
+      resDiv.innerHTML=`📈 <b>Pagas ${fmt$(Math.abs(redondeado))} más</b> en ${comparados} producto(s) vs última compra`;
+      resDiv.style.background='#fee2e2';
+      resDiv.style.color='#991b1b';
+      tAhorro.textContent=`📈 -${fmt$(Math.abs(redondeado))}`;
+      statAhorro.style.display='block';
+    }else{
+      resDiv.innerHTML=`✅ <b>Mismos precios</b> que la última compra`;
+      resDiv.style.background='#e0f2fe';
+      resDiv.style.color='#075985';
+      statAhorro.style.display='none';
+    }
+  }else{
+    resDiv.style.display='none';
+    statAhorro.style.display='none';
+  }
+
+  /* ---- Contadores ---- */
+
+  const listosVisibles=visibles.filter(x=>x.listo).length;
+  const totalListos=hoy.filter(x=>x.listo).length;
+
+  $('ch').textContent=visibles.length+' productos';
+  $('chListo').textContent=listosVisibles>0?`(${listosVisibles} listos)`:'';
+  $('tListo').textContent=`${totalListos}/${hoy.length}`;
+  $('tp').textContent=hoy.length;
+  $('tg').textContent=fmt$(tot);
+  $('th').textContent=hist.length;
+
+  /* ---- Guardados ---- */
+
+  $('lg').innerHTML=hist.length
+    ?hist.map(htmlMercado).join('')
+    :`<center style="color:#aaa;padding:18px">Sin guardados</center>`;
+}
+
+/* =========================================================
    EVENTOS
    ========================================================= */
 
-document.getElementById('nom')
-  .addEventListener('input',checkHist);
+$('nom').addEventListener('input',checkHist);
+$('val').addEventListener('input',()=>{calcUnitario();checkHist()});
+$('cant').addEventListener('input',calcUnitario);
+$('uni').addEventListener('change',()=>{calcUnitario();checkHist()});
 
-document.getElementById('val')
-  .addEventListener('input',()=>{
+$('cat').addEventListener('change',()=>{
+  if(categoriaActiva!=='Todas')categoriaActiva=$('cat').value;
+  renderCategoryTabs();
+});
 
-    calcUnitario();
+$('modalEdit').addEventListener('click',function(e){
+  if(e.target===this)cerrarEditor();
+});
 
-    checkHist();
-  });
+$('modalImport').addEventListener('click',function(e){
+  if(e.target===this)closeImportModal();
+});
 
-document.getElementById('cant')
-  .addEventListener('input',calcUnitario);
-
-document.getElementById('uni')
-  .addEventListener('change',calcUnitario);
-
-document.getElementById('cat')
-  .addEventListener('change',()=>{
-
-    if(categoriaActiva!=='Todas'){
-
-      categoriaActiva=
-        document.getElementById('cat').value;
-    }
-
-    renderCategoryTabs();
-  });
-
-/* =========================================================
-   CERRAR MODALES
-   ========================================================= */
-
-document.getElementById('modalEdit')
-  .addEventListener('click',function(e){
-
-    if(e.target===this)
-      cerrarEditor();
-  });
-
-document.getElementById('modalImport')
-  .addEventListener('click',function(e){
-
-    if(e.target===this)
-      closeImportModal();
-  });
-
-/* =========================================================
-   ENTER
-   ========================================================= */
-
-document.getElementById('nom')
-  .addEventListener('keydown',function(e){
-
+function alPresionarEnter(id,accion){
+  $(id).addEventListener('keydown',e=>{
     if(e.key==='Enter'){
-
       e.preventDefault();
-
-      document.getElementById('cant').focus();
+      accion();
     }
   });
+}
 
-document.getElementById('cant')
-  .addEventListener('keydown',function(e){
+alPresionarEnter('nom',()=>$('cant').focus());
+alPresionarEnter('cant',()=>$('val').focus());
+alPresionarEnter('val',add);
+alPresionarEnter('editValor',guardarEditor);
+alPresionarEnter('editTexto',guardarEditor);
 
-    if(e.key==='Enter'){
-
-      e.preventDefault();
-
-      document.getElementById('val').focus();
-    }
-  });
-
-document.getElementById('val')
-  .addEventListener('keydown',function(e){
-
-    if(e.key==='Enter'){
-
-      e.preventDefault();
-
-      add();
-    }
-  });
-
-document.getElementById('editValor')
-  .addEventListener('keydown',function(e){
-
-    if(e.key==='Enter'){
-
-      e.preventDefault();
-
-      guardarEditor();
-    }
-  });
-
-document.getElementById('editTexto')
-  .addEventListener('keydown',function(e){
-
-    if(e.key==='Enter'){
-
-      e.preventDefault();
-
-      guardarEditor();
-    }
-  });
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    cerrarEditor();
+    closeImportModal();
+  }
+});
 
 /* =========================================================
    INICIALIZACIÓN
    ========================================================= */
 
 poblarSelectCategoria();
-
 poblarSelectUnidad();
-
+calcUnitario();
 render();
 
-/* =========================================================
-   COMPROBAR LOCALSTORAGE
-   ========================================================= */
-
 try{
-
   const prueba='__lm_test__';
-
   localStorage.setItem(prueba,'1');
-
   localStorage.removeItem(prueba);
-
 }catch(e){
-
   setTimeout(()=>{
-
     alert(
       'Atención: este navegador no permite almacenamiento local. '+
       'Los datos podrían perderse al cerrar la página. '+
       'Abra la aplicación en Safari/Chrome/Edge normal, no en modo privado.'
     );
-
   },300);
 }
 
